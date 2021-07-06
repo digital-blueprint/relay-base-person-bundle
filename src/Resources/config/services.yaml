@@ -1,0 +1,33 @@
+services:
+  DBP\API\BaseBundle\Controller\:
+    resource: '../../Controller'
+    autowire: true
+    autoconfigure: true
+
+  DBP\API\BaseBundle\API\OrganizationProviderInterface:
+    '@DBP\API\BaseBundle\Service\DummyOrganizationProvider'
+
+  DBP\API\BaseBundle\Service\DummyOrganizationProvider:
+    autowire: true
+    autoconfigure: true
+
+  DBP\API\BaseBundle\Service\DummyPersonProvider:
+    autowire: true
+    autoconfigure: true
+
+  DBP\API\BaseBundle\API\PersonProviderInterface:
+    '@DBP\API\BaseBundle\Service\DummyPersonProvider'
+
+  DBP\API\BaseBundle\DataProvider\:
+    resource: '../../DataProvider'
+    autowire: true
+    autoconfigure: true
+
+  DBP\API\BaseBundle\Serializer\PersonAttributeNormalizer:
+    autowire: true
+    autoconfigure: true
+
+  # This alias exist so we can replace the service during tests
+  test.PersonProviderInterface:
+    alias: 'DBP\API\BaseBundle\API\PersonProviderInterface'
+    public: true
