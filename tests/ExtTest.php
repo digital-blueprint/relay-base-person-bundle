@@ -5,13 +5,28 @@ declare(strict_types=1);
 namespace DBP\API\BaseBundle\Tests;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
+use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use DBP\API\BaseBundle\Entity\Person;
-use DBP\API\BaseBundle\TestUtils\UserAuthTrait;
+use DBP\API\BaseBundle\TestUtils\DummyPersonProvider;
+use DBP\API\CoreBundle\TestUtils\UserAuthTrait;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ExtTest extends ApiTestCase
 {
     use UserAuthTrait;
+
+    private function withPerson(Client $client, UserInterface $user): Person
+    {
+        $person = new Person();
+        $person->setIdentifier($user->getUserIdentifier());
+        $person->setRoles($user->getRoles());
+        $personProvider = new DummyPersonProvider($person);
+        $container = $client->getContainer();
+        $container->set('test.PersonProviderInterface', $personProvider);
+
+        return $person;
+    }
 
     public function testGetPersonNoAuth()
     {
@@ -31,9 +46,9 @@ class ExtTest extends ApiTestCase
 
     public function testGetPerson()
     {
-        $person = new Person();
+        [$client, $user] = $this->withUser('foobar', '42');
+        $person = $this->withPerson($client, $user);
         $person->setEmail('foo@bar.com');
-        [$client, $user] = $this->withUser('foobar', '42', ['person' => $person]);
         $response = $client->request('GET', '/people/foobar', ['headers' => [
             'Authorization' => 'Bearer 42',
         ]]);
@@ -66,6 +81,7 @@ class ExtTest extends ApiTestCase
     public function testGetPersonRoles()
     {
         [$client, $user] = $this->withUser('foobar', '42', ['roles' => ['ROLE']]);
+        $this->withPerson($client, $user);
         $response = $client->request('GET', '/people/foobar', ['headers' => [
             'Authorization' => 'Bearer 42',
         ]]);
