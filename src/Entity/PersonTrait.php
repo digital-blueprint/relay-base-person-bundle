@@ -97,11 +97,9 @@ trait PersonTrait
         $this->roles = [];
     }
 
-    public function setIdentifier(string $identifier): self
+    public function setIdentifier(string $identifier)
     {
         $this->identifier = $identifier;
-
-        return $this;
     }
 
     public function getIdentifier(): ?string
@@ -114,11 +112,9 @@ trait PersonTrait
         return $this->givenName;
     }
 
-    public function setGivenName(?string $givenName): self
+    public function setGivenName(?string $givenName)
     {
         $this->givenName = $givenName;
-
-        return $this;
     }
 
     public function getFamilyName(): ?string
@@ -126,11 +122,9 @@ trait PersonTrait
         return $this->familyName;
     }
 
-    public function setFamilyName(?string $familyName): self
+    public function setFamilyName(?string $familyName)
     {
         $this->familyName = $familyName;
-
-        return $this;
     }
 
     public function getHonorificSuffix(): ?string
@@ -138,11 +132,9 @@ trait PersonTrait
         return $this->honorificSuffix;
     }
 
-    public function setHonorificSuffix(?string $honorificSuffix): self
+    public function setHonorificSuffix(?string $honorificSuffix)
     {
         $this->honorificSuffix = $honorificSuffix;
-
-        return $this;
     }
 
     public function getTelephone(): ?string
@@ -150,11 +142,9 @@ trait PersonTrait
         return $this->telephone;
     }
 
-    public function setTelephone(?string $telephone): self
+    public function setTelephone(?string $telephone)
     {
         $this->telephone = $telephone;
-
-        return $this;
     }
 
     public function getPhoneExtension(): ?string
@@ -162,11 +152,9 @@ trait PersonTrait
         return $this->phoneExtension;
     }
 
-    public function setPhoneExtension(?string $phoneExtension): self
+    public function setPhoneExtension(?string $phoneExtension)
     {
         $this->phoneExtension = $phoneExtension;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -174,11 +162,9 @@ trait PersonTrait
         return $this->email;
     }
 
-    public function setEmail(?string $email): self
+    public function setEmail(?string $email)
     {
         $this->email = $email;
-
-        return $this;
     }
 
     /**
@@ -214,14 +200,9 @@ trait PersonTrait
         return $this->roles;
     }
 
-    /**
-     * @return Person
-     */
-    public function setRoles(array $roles): self
+    public function setRoles(array $roles)
     {
         $this->roles = $roles;
-
-        return $this;
     }
 
     public function getImage(): ?string
@@ -239,10 +220,8 @@ trait PersonTrait
         return $this->birthDate;
     }
 
-    public function setBirthDate(string $birthDate): self
+    public function setBirthDate(string $birthDate)
     {
         $this->birthDate = $birthDate;
-
-        return $this;
     }
 }
