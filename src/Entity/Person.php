@@ -12,7 +12,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *         "get" = {
  *             "path" = "/people",
  *             "openapi_context" = {
- *                 "tags" = {"Core"},
+ *                 "tags" = {"Base"},
  *                 "parameters" = {
  *                     {"name" = "search", "in" = "query", "description" = "Search for a person name", "type" = "string", "example" = "woody007"}
  *                 }
@@ -23,7 +23,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *         "get" = {
  *             "path" = "/people/{identifier}",
  *             "openapi_context" = {
- *                 "tags" = {"Core"},
+ *                 "tags" = {"Base"},
  *             }
  *
  *         },
