@@ -16,6 +16,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
+use Symfony\Bundle\MonologBundle\MonologBundle;
 
 class Kernel extends BaseKernel
 {
@@ -27,6 +28,7 @@ class Kernel extends BaseKernel
         yield new SecurityBundle();
         yield new TwigBundle();
         yield new NelmioCorsBundle();
+        yield new MonologBundle();
         yield new ApiPlatformBundle();
         yield new DbpBaseBundle();
         yield new DbpCoreBundle();
