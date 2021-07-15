@@ -24,9 +24,6 @@ final class OrganizationDataProvider extends AbstractController implements ItemD
         return Organization::class === $resourceClass;
     }
 
-    /**
-     * @throws \DBP\API\CoreBundle\Exception\ItemNotLoadedException
-     */
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = []): ?Organization
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');

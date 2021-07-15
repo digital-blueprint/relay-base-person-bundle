@@ -7,7 +7,7 @@ namespace DBP\API\BaseBundle\TestUtils;
 use ApiPlatform\Core\Exception\ItemNotFoundException;
 use DBP\API\BaseBundle\API\PersonProviderInterface;
 use DBP\API\BaseBundle\Entity\Person;
-use DBP\API\CoreBundle\Exception\ItemNotLoadedException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DummyPersonProvider implements PersonProviderInterface
 {
@@ -27,7 +27,7 @@ class DummyPersonProvider implements PersonProviderInterface
     public function getPerson(string $id): Person
     {
         if ($id !== $this->person->getIdentifier()) {
-            throw new ItemNotLoadedException();
+            throw new NotFoundHttpException();
         }
 
         return $this->person;

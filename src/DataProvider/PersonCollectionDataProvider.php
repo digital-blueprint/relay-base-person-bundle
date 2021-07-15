@@ -27,9 +27,6 @@ final class PersonCollectionDataProvider extends AbstractController implements C
         return Person::class === $resourceClass;
     }
 
-    /**
-     * @throws \DBP\API\CoreBundle\Exception\ItemNotLoadedException
-     */
     public function getCollection(string $resourceClass, string $operationName = null, array $context = []): ArrayFullPaginator
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
