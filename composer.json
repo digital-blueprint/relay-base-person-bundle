@@ -6,7 +6,7 @@
         "php": "^7.3",
         "api-platform/core": "^2.6.3",
         "doctrine/annotations": "^1.0",
-        "dbp/api-core-bundle": "^0.1.2",
+        "dbp/api-core-bundle": "^0.1.7",
         "guzzlehttp/guzzle": "^7.0",
         "kevinrob/guzzle-cache-middleware": "^3.3",
         "monolog/monolog": "^1.4||^2.1",

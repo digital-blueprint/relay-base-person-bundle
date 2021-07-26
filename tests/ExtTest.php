@@ -30,14 +30,14 @@ class ExtTest extends ApiTestCase
 
     public function testGetPersonNoAuth()
     {
-        [$client, $user] = $this->withUser('foobar', '42');
+        $client = $this->withUser('foobar', ['foo']);
         $response = $client->request('GET', '/people/foobar');
         $this->assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
     }
 
     public function testGetPersonWrongAuth()
     {
-        [$client, $user] = $this->withUser('foobar', '42');
+        $client = $this->withUser('foobar', [], '42');
         $response = $client->request('GET', '/people/foobar', ['headers' => [
             'Authorization' => 'Bearer NOT42',
         ]]);
@@ -46,14 +46,15 @@ class ExtTest extends ApiTestCase
 
     public function testGetPerson()
     {
-        [$client, $user] = $this->withUser('foobar', '42');
+        $client = $this->withUser('foobar', [], '42');
+        $user = $this->getUser($client);
         $person = $this->withPerson($client, $user);
         $person->setEmail('foo@bar.com');
         $response = $client->request('GET', '/people/foobar', ['headers' => [
             'Authorization' => 'Bearer 42',
         ]]);
         $this->assertJson($response->getContent(false));
-        $data = json_decode($response->getContent(false), true);
+        $data = json_decode($response->getContent(false), true, 512, JSON_THROW_ON_ERROR);
         $this->assertEquals('/people/foobar', $data['@id']);
         $this->assertEquals('foobar', $data['identifier']);
         $this->assertEquals('foo@bar.com', $data['email']);
@@ -61,7 +62,7 @@ class ExtTest extends ApiTestCase
 
     public function testResponseHeaders()
     {
-        [$client, $user] = $this->withUser('foobar', '42');
+        $client = $this->withUser('foobar', [], '42');
         $response = $client->request('GET', '/people/foobar', ['headers' => [
             'Authorization' => 'Bearer 42',
         ]]);
@@ -80,12 +81,13 @@ class ExtTest extends ApiTestCase
 
     public function testGetPersonRoles()
     {
-        [$client, $user] = $this->withUser('foobar', '42', ['roles' => ['ROLE']]);
+        $client = $this->withUser('foobar', ['ROLE'], '42');
+        $user = $this->getUser($client);
         $this->withPerson($client, $user);
         $response = $client->request('GET', '/people/foobar', ['headers' => [
             'Authorization' => 'Bearer 42',
         ]]);
-        $data = json_decode($response->getContent(), true);
+        $data = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
         $this->assertEquals(['ROLE'], $data['roles']);
     }
 

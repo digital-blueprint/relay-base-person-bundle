@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5dfef3cbb78e35f2f5d46aea0b51aca5",
+    "content-hash": "a21fd5172c0421fc1308a6400e1c2f50",
     "packages": [
         {
             "name": "api-platform/core",
@@ -223,11 +223,11 @@
         },
         {
             "name": "dbp/api-core-bundle",
-            "version": "v0.1.4",
+            "version": "v0.1.7",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.tugraz.at:dbp/middleware/dbp-api/api-core-bundle.git",
-                "reference": "c05273c2313eb90ac5d1868097ba45c6ca0e7b0e"
+                "reference": "3c805ba5d963849be0b07d6b5f28c2d22a01f3d3"
             },
             "require": {
                 "api-platform/core": "^2.6.3",
@@ -302,7 +302,7 @@
             "license": [
                 "AGPL-3.0-or-later"
             ],
-            "time": "2021-07-06T13:58:53+00:00"
+            "time": "2021-07-22T08:56:16+00:00"
         },
         {
             "name": "doctrine/annotations",
