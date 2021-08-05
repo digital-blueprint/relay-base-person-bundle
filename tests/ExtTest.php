@@ -8,7 +8,7 @@ use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use DBP\API\BaseBundle\Entity\Person;
 use DBP\API\BaseBundle\TestUtils\DummyPersonProvider;
-use DBP\API\CoreBundle\TestUtils\UserAuthTrait;
+use Dbp\Relay\CoreBundle\TestUtils\UserAuthTrait;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
 

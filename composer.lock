@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51570801cf756274fd4746fadd35fe67",
+    "content-hash": "2cd489c238235dc4f2259cf92594c168",
     "packages": [
         {
             "name": "api-platform/core",
@@ -166,12 +166,12 @@
             "time": "2021-06-15T16:53:33+00:00"
         },
         {
-            "name": "dbp/api-core-bundle",
-            "version": "v0.1.9",
+            "name": "dbp/relay-core-bundle",
+            "version": "v0.1.11",
             "source": {
                 "type": "git",
-                "url": "git@gitlab.tugraz.at:dbp/middleware/dbp-api/api-core-bundle.git",
-                "reference": "a2ef42f886381976288f0ffdbbac088ba3e33adc"
+                "url": "https://gitlab.tugraz.at/dbp/relay/dbp-relay-core-bundle",
+                "reference": "5ab31546f7f8f85b876523de75ddf559f572cb0d"
             },
             "require": {
                 "api-platform/core": "^2.6.3",
@@ -204,45 +204,14 @@
             "type": "symfony-bundle",
             "autoload": {
                 "psr-4": {
-                    "DBP\\API\\CoreBundle\\": "src/"
+                    "Dbp\\Relay\\CoreBundle\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "DBP\\API\\CoreBundle\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "@php vendor/bin/simple-phpunit"
-                ],
-                "phpstan": [
-                    "@php vendor/bin/simple-phpunit --atleast-version 0",
-                    "@php vendor/bin/phpstan analyze --ansi"
-                ],
-                "psalm": [
-                    "@php vendor/bin/simple-phpunit --atleast-version 0",
-                    "@php vendor/bin/psalm"
-                ],
-                "lint": [
-                    "@composer run cs",
-                    "@composer run phpstan",
-                    "@composer run psalm"
-                ],
-                "cs-fix": [
-                    "@php vendor/bin/php-cs-fixer --ansi fix"
-                ],
-                "cs": [
-                    "@php vendor/bin/php-cs-fixer --ansi fix --dry-run --diff"
-                ],
-                "coverage": [
-                    "@php -dxdebug.mode=coverage vendor/bin/simple-phpunit --coverage-html _coverage"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "AGPL-3.0-or-later"
             ],
-            "time": "2021-08-02T14:00:02+00:00"
+            "time": "2021-08-03T09:36:08+00:00"
         },
         {
             "name": "doctrine/annotations",

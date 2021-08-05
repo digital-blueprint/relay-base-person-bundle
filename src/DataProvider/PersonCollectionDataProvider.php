@@ -8,7 +8,7 @@ use ApiPlatform\Core\DataProvider\CollectionDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use DBP\API\BaseBundle\API\PersonProviderInterface;
 use DBP\API\BaseBundle\Entity\Person;
-use DBP\API\CoreBundle\Helpers\ArrayFullPaginator;
+use Dbp\Relay\CoreBundle\Helpers\ArrayFullPaginator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class PersonCollectionDataProvider extends AbstractController implements CollectionDataProviderInterface, RestrictedDataProviderInterface
