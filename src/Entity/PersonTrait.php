@@ -35,43 +35,12 @@ trait PersonTrait
     private $familyName;
 
     /**
-     * @ApiProperty(iri="http://schema.org/honorificSuffix")
-     * @Groups({"Person:output"})
-     *
-     * @var string
-     */
-    private $honorificSuffix;
-
-    /**
-     * @ApiProperty(iri="http://schema.org/telephone")
-     * @Groups({"Person:output"})
-     *
-     * @var string
-     */
-    private $telephone;
-
-    /**
-     * @var string
-     * @Groups({"Person:output"})
-     *
-     * @var string
-     */
-    private $phoneExtension;
-
-    /**
      * @ApiProperty(iri="http://schema.org/email")
      * @Groups({"Person:current-user", "Person:extended-access"})
      *
      * @var string
      */
     private $email;
-
-    /**
-     * @var string|null
-     * @ApiProperty(iri="http://schema.org/image", required=false)
-     * @Groups({"Person:current-user"})
-     */
-    private $image;
 
     /**
      * @var array
@@ -127,36 +96,6 @@ trait PersonTrait
         $this->familyName = $familyName;
     }
 
-    public function getHonorificSuffix(): ?string
-    {
-        return $this->honorificSuffix;
-    }
-
-    public function setHonorificSuffix(?string $honorificSuffix)
-    {
-        $this->honorificSuffix = $honorificSuffix;
-    }
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(?string $telephone)
-    {
-        $this->telephone = $telephone;
-    }
-
-    public function getPhoneExtension(): ?string
-    {
-        return $this->phoneExtension;
-    }
-
-    public function setPhoneExtension(?string $phoneExtension)
-    {
-        $this->phoneExtension = $phoneExtension;
-    }
-
     public function getEmail(): ?string
     {
         return $this->email;
@@ -203,16 +142,6 @@ trait PersonTrait
     public function setRoles(array $roles)
     {
         $this->roles = $roles;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): void
-    {
-        $this->image = $image;
     }
 
     public function getBirthDate(): ?string
