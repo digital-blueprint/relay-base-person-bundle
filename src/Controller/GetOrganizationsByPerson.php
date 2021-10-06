@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DBP\API\BaseBundle\Controller;
+namespace Dbp\Relay\BaseBundle\Controller;
 
 use ApiPlatform\Core\DataProvider\PaginatorInterface;
-use DBP\API\BaseBundle\API\OrganizationProviderInterface;
-use DBP\API\BaseBundle\API\PersonProviderInterface;
+use Dbp\Relay\BaseBundle\API\OrganizationProviderInterface;
+use Dbp\Relay\BaseBundle\API\PersonProviderInterface;
 use Dbp\Relay\CoreBundle\Exception\ApiError;
 use Dbp\Relay\CoreBundle\Helpers\ArrayFullPaginator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

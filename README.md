@@ -16,7 +16,7 @@ composer require dbp/api-base-bundle
 
 ```php
 ...
-DBP\API\BaseBundle\DbpBaseBundle::class => ['all' => true],
+Dbp\Relay\BaseBundle\DbpRelayBaseBundle::class => ['all' => true],
 DBP\API\CoreBundle\DbpCoreBundle::class => ['all' => true],
 ];
 ```

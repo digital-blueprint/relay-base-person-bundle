@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DBP\API\BaseBundle\Service;
+namespace Dbp\Relay\BaseBundle\Service;
 
-use DBP\API\BaseBundle\API\OrganizationProviderInterface;
-use DBP\API\BaseBundle\Entity\Organization;
-use DBP\API\BaseBundle\Entity\Person;
+use Dbp\Relay\BaseBundle\API\OrganizationProviderInterface;
+use Dbp\Relay\BaseBundle\Entity\Organization;
+use Dbp\Relay\BaseBundle\Entity\Person;
 
 class DummyOrganizationProvider implements OrganizationProviderInterface
 {

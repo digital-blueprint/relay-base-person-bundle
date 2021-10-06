@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DBP\API\BaseBundle\Entity;
+namespace Dbp\Relay\BaseBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -11,7 +11,7 @@ trait PersonTrait
 {
     /**
      * @ApiProperty(identifier=true)
-     * @Groups({"Person:output"})
+     * @Groups({"BasePerson:output"})
      *
      * @var string
      */
@@ -19,7 +19,7 @@ trait PersonTrait
 
     /**
      * @ApiProperty(iri="http://schema.org/givenName")
-     * @Groups({"Person:output"})
+     * @Groups({"BasePerson:output"})
      *
      * @var string
      */
@@ -28,7 +28,7 @@ trait PersonTrait
     /**
      * @var string
      * @ApiProperty(iri="http://schema.org/familyName")
-     * @Groups({"Person:output"})
+     * @Groups({"BasePerson:output"})
      *
      * @var string
      */
@@ -36,7 +36,7 @@ trait PersonTrait
 
     /**
      * @ApiProperty(iri="http://schema.org/email")
-     * @Groups({"Person:current-user", "Person:extended-access"})
+     * @Groups({"BasePerson:current-user", "BasePerson:extended-access"})
      *
      * @var string
      */
@@ -44,14 +44,14 @@ trait PersonTrait
 
     /**
      * @var array
-     * @Groups({"Person:current-user"})
+     * @Groups({"BasePerson:current-user"})
      */
     private $roles;
 
     /**
      * @var string
      * @ApiProperty(iri="http://schema.org/birthDate")
-     * @Groups({"Person:current-user"})
+     * @Groups({"BasePerson:current-user"})
      */
     private $birthDate;
 
@@ -127,7 +127,7 @@ trait PersonTrait
 
     /**
      * @ApiProperty(iri="http://schema.org/name")
-     * @Groups({"Person:output"})
+     * @Groups({"BasePerson:output"})
      */
     public function getName(): ?string
     {

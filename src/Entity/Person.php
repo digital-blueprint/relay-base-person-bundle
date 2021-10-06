@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DBP\API\BaseBundle\Entity;
+namespace Dbp\Relay\BaseBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 
@@ -31,7 +31,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *     iri="http://schema.org/Person",
  *     description="A person of the LDAP system",
  *     normalizationContext={
- *         "groups" = {"Person:output"},
+ *         "groups" = {"BasePerson:output"},
  *         "jsonld_embed_context" = true,
  *     }
  * )

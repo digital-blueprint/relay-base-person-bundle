@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace DBP\API\BaseBundle\DataProvider;
+namespace Dbp\Relay\BaseBundle\DataProvider;
 
 use ApiPlatform\Core\DataProvider\ContextAwareCollectionDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
-use DBP\API\BaseBundle\API\OrganizationProviderInterface;
-use DBP\API\BaseBundle\Entity\Organization;
+use Dbp\Relay\BaseBundle\API\OrganizationProviderInterface;
+use Dbp\Relay\BaseBundle\Entity\Organization;
 use Dbp\Relay\CoreBundle\Helpers\ArrayFullPaginator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 

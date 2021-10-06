@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DBP\API\BaseBundle\Tests;
+namespace Dbp\Relay\BaseBundle\Tests;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle;
-use DBP\API\BaseBundle\DbpBaseBundle;
+use Dbp\Relay\BaseBundle\DbpRelayBaseBundle;
 use Dbp\Relay\CoreBundle\DbpRelayCoreBundle;
 use Nelmio\CorsBundle\NelmioCorsBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
@@ -29,7 +29,7 @@ class Kernel extends BaseKernel
         yield new NelmioCorsBundle();
         yield new MonologBundle();
         yield new ApiPlatformBundle();
-        yield new DbpBaseBundle();
+        yield new DbpRelayBaseBundle();
         yield new DbpRelayCoreBundle();
     }
 

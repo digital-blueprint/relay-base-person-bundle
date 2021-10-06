@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DBP\API\BaseBundle\Service;
+namespace Dbp\Relay\BaseBundle\Service;
 
-use DBP\API\BaseBundle\API\PersonProviderInterface;
-use DBP\API\BaseBundle\Entity\Person;
+use Dbp\Relay\BaseBundle\API\PersonProviderInterface;
+use Dbp\Relay\BaseBundle\Entity\Person;
 
 class DummyPersonProvider implements PersonProviderInterface
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DBP\API\BaseBundle\Entity;
+namespace Dbp\Relay\BaseBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use DBP\API\BaseBundle\Controller\GetOrganizationsByPerson;
+use Dbp\Relay\BaseBundle\Controller\GetOrganizationsByPerson;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DBP\API\BaseBundle\API;
+namespace Dbp\Relay\BaseBundle\API;
 
-use DBP\API\BaseBundle\Entity\Organization;
-use DBP\API\BaseBundle\Entity\Person;
+use Dbp\Relay\BaseBundle\Entity\Organization;
+use Dbp\Relay\BaseBundle\Entity\Person;
 
 interface OrganizationProviderInterface
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace DBP\API\BaseBundle\Tests;
+namespace Dbp\Relay\BaseBundle\Tests;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
-use DBP\API\BaseBundle\Entity\Person;
-use DBP\API\BaseBundle\TestUtils\DummyPersonProvider;
+use Dbp\Relay\BaseBundle\Entity\Person;
+use Dbp\Relay\BaseBundle\TestUtils\DummyPersonProvider;
 use Dbp\Relay\CoreBundle\TestUtils\UserAuthTrait;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;

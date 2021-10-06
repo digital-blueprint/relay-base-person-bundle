@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DBP\API\BaseBundle\Serializer;
+namespace Dbp\Relay\BaseBundle\Serializer;
 
-use DBP\API\BaseBundle\Entity\Person;
+use Dbp\Relay\BaseBundle\Entity\Person;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
@@ -30,7 +30,7 @@ class PersonAttributeNormalizer implements ContextAwareNormalizerInterface, Norm
     {
         // set the group "Person:current-user" for the current user
         if ($this->isCurrentUser($object)) {
-            $context['groups'][] = 'Person:current-user';
+            $context['groups'][] = 'BasePerson:current-user';
         }
 
         $context[self::ALREADY_CALLED] = true;
