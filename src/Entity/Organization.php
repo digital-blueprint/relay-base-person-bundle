@@ -52,7 +52,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     description="An organization",
  *     normalizationContext={
  *         "jsonld_embed_context" = true,
- *         "groups" = {"Organization:output"}
+ *         "groups" = {"BaseOrganization:output"}
  *     }
  * )
  */

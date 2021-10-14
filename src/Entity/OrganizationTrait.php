@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 trait OrganizationTrait
 {
     /**
-     * @Groups({"Organization:output"})
+     * @Groups({"BaseOrganization:output"})
      * @ApiProperty(identifier=true)
      *
      * @var string
@@ -18,7 +18,7 @@ trait OrganizationTrait
     private $identifier;
 
     /**
-     * @Groups({"Organization:output"})
+     * @Groups({"BaseOrganization:output"})
      * @ApiProperty(iri="https://schema.org/name")
      *
      * @var string
@@ -26,7 +26,7 @@ trait OrganizationTrait
     private $name;
 
     /**
-     * @Groups({"Organization:output"})
+     * @Groups({"BaseOrganization:output"})
      * @ApiProperty(iri="https://schema.org/url")
      *
      * @var string
@@ -34,7 +34,7 @@ trait OrganizationTrait
     private $url;
 
     /**
-     * @Groups({"Organization:output"})
+     * @Groups({"BaseOrganization:output"})
      * @ApiProperty(iri="https://schema.org/alternateName")
      *
      * @var string
