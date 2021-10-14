@@ -125,15 +125,6 @@ trait PersonTrait
         return $this->extraData[$key] ?? null;
     }
 
-    /**
-     * @ApiProperty(iri="http://schema.org/name")
-     * @Groups({"BasePerson:output"})
-     */
-    public function getName(): ?string
-    {
-        return $this->givenName.' '.$this->familyName;
-    }
-
     public function getRoles(): array
     {
         return $this->roles;
