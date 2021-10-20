@@ -12,12 +12,12 @@ This Symfony bundle contains entities required by many bundles for the DBP Relay
 composer require dbp/api-base-bundle
 ```
 
-* Add the bundle to your `config/bundles.php`:
+* Add the bundle to your `config/bundles.php` in front on `DbpRelayCoreBundle`:
 
 ```php
 ...
 Dbp\Relay\BaseBundle\DbpRelayBaseBundle::class => ['all' => true],
-DBP\API\CoreBundle\DbpCoreBundle::class => ['all' => true],
+Dbp\Relay\CoreBundle\DbpRelayCoreBundle => ['all' => true],
 ];
 ```
 
