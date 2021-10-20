@@ -12,7 +12,7 @@ This Symfony bundle contains entities required by many bundles for the DBP Relay
 composer require dbp/relay-base-bundle
 ```
 
-* Add the bundle to your `config/bundles.php` in front on `DbpRelayCoreBundle`:
+* Add the bundle to your `config/bundles.php` in front of `DbpRelayCoreBundle`:
 
 ```php
 ...
