@@ -1,15 +1,15 @@
-# API-Base-Bundle
+# DbpRelayBaseBundle
 
-[GitLab](https://gitlab.tugraz.at/dbp/relay/api-base-bundle) | [Packagist](https://packagist.org/packages/dbp/api-base-bundle)
+[GitLab](https://gitlab.tugraz.at/dbp/relay/dbp-relay-base-bundle) | [Packagist](https://packagist.org/packages/dbp/relay-base-bundle)
 
 This Symfony bundle contains entities required by many bundles for the DBP Relay project.
 
-## Integration into the API Server
+## Integration into the Relay API Server
 
 * Add the bundle package as a dependency:
 
 ```
-composer require dbp/api-base-bundle
+composer require dbp/relay-base-bundle
 ```
 
 * Add the bundle to your `config/bundles.php` in front on `DbpRelayCoreBundle`:
