@@ -108,3 +108,59 @@ For above class you need to add this to your `src/Resources/config/services.yaml
   Dbp\Relay\BaseBundle\API\PersonProviderInterface:
     '@YourUniversity\Service\PersonProvider'
 ```
+
+## OrganizationProvider service
+
+For services that need to fetch organizations you need to create a service that implements
+[OrganizationProviderInterface](https://gitlab.tugraz.at/dbp/relay/dbp-relay-base-bundle/-/blob/main/src/API/OrganizationProviderInterface.php)
+in your application.
+
+### Example
+
+#### Service class
+
+You can for example put below code into `src/Service/OrganizationProvider.php`:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace YourUniversity\Service;
+
+use Dbp\Relay\BaseBundle\API\OrganizationProviderInterface;
+use Dbp\Relay\BaseBundle\Entity\Organization;
+
+class OrganizationProvider implements OrganizationProviderInterface
+{
+    public function getOrganizationById(string $identifier, string $lang): Organization
+    {
+        return some_method_that_fetches_an_organization_by_id($identifier, $lang);
+    }
+
+    /**
+     * @return Organization[]
+     */
+    public function getOrganizationsByPerson(Person $person, string $context, string $lang): array
+    {
+        return some_method_that_fetches_an_organization_by_person($person, $context, $lang);
+    }
+
+    /**
+     * @return Organization[]
+     */
+    public function getOrganizations(string $lang): array
+    {
+        return some_method_that_fetches_all_organizations($lang);
+    }
+}
+```
+
+#### Services configuration
+
+For above class you need to add this to your `src/Resources/config/services.yaml`:
+
+```yaml
+  Dbp\Relay\BaseBundle\API\OrganizationProviderInterface:
+    '@YourUniversity\Service\OrganizationProvider'
+```
