@@ -9,6 +9,7 @@ use Dbp\Relay\BaseBundle\Entity\Person;
 interface PersonProviderInterface
 {
     /**
+     * @param array $filters $filters['search'] can be a string to search for people (e.g. part of the name)
      * @return Person[]
      */
     public function getPersons(array $filters): array;
@@ -20,6 +21,13 @@ interface PersonProviderInterface
 
     public function getPerson(string $id): Person;
 
+    /**
+     * This is only used by external services (e.g. the alma bundle) to translate external persons to internal persons
+     *
+     * @param string $service identifies the service that wants to fetch a person
+     * @param string $serviceID identifies person by an external id
+     * @return Person
+     */
     public function getPersonForExternalService(string $service, string $serviceID): Person;
 
     /**
