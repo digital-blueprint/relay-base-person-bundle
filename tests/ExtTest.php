@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Dbp\Relay\BaseBundle\Tests;
+namespace Dbp\Relay\BasePersonBundle\Tests;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
-use Dbp\Relay\BaseBundle\Entity\Person;
-use Dbp\Relay\BaseBundle\TestUtils\DummyPersonProvider;
+use Dbp\Relay\BasePersonBundle\Entity\Person;
+use Dbp\Relay\BasePersonBundle\TestUtils\DummyPersonProvider;
 use Dbp\Relay\CoreBundle\TestUtils\UserAuthTrait;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -98,9 +98,6 @@ class ExtTest extends ApiTestCase
         $endpoints = [
             '/people',
             '/people/foo',
-            // FIXME: '/people/foo/organizations',
-            '/organizations',
-            '/organizations/foo',
         ];
         foreach ($endpoints as $path) {
             $response = $client->request('GET', $path);

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dbp\Relay\BaseBundle\Serializer;
+namespace Dbp\Relay\BasePersonBundle\Serializer;
 
-use Dbp\Relay\BaseBundle\Entity\Person;
+use Dbp\Relay\BasePersonBundle\Entity\Person;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;

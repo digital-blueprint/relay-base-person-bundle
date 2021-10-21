@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dbp\Relay\BaseBundle\Tests;
+namespace Dbp\Relay\BasePersonBundle\Tests;
 
-use Dbp\Relay\BaseBundle\Entity\Person;
+use Dbp\Relay\BasePersonBundle\Entity\Person;
 use PHPUnit\Framework\TestCase;
 
 class PersonTest extends TestCase

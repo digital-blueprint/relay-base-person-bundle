@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dbp\Relay\BaseBundle\Entity;
+namespace Dbp\Relay\BasePersonBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Symfony\Component\Serializer\Annotation\Groups;
