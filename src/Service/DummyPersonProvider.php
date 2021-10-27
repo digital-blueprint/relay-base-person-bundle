@@ -63,21 +63,4 @@ class DummyPersonProvider implements PersonProviderInterface
     {
         $this->currentIdentifier = $identifier;
     }
-
-    public function getRolesForCurrentPerson(): array
-    {
-        if ($this->currentIdentifier === null) {
-            return [];
-        }
-
-        return $this->getCurrentPerson()->getRoles();
-    }
-
-    public function setRolesForCurrentPerson(array $roles): void
-    {
-        if ($this->currentIdentifier === null) {
-            return;
-        }
-        $this->getCurrentPerson()->setRoles($roles);
-    }
 }

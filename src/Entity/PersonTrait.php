@@ -43,12 +43,6 @@ trait PersonTrait
     private $email;
 
     /**
-     * @var array
-     * @Groups({"BasePerson:current-user"})
-     */
-    private $roles;
-
-    /**
      * @var string
      * @ApiProperty(iri="http://schema.org/birthDate")
      * @Groups({"BasePerson:current-user"})
@@ -63,7 +57,6 @@ trait PersonTrait
     public function __construct()
     {
         $this->extraData = [];
-        $this->roles = [];
     }
 
     public function setIdentifier(string $identifier)
@@ -123,16 +116,6 @@ trait PersonTrait
     public function getExtraData(string $key)
     {
         return $this->extraData[$key] ?? null;
-    }
-
-    public function getRoles(): array
-    {
-        return $this->roles;
-    }
-
-    public function setRoles(array $roles)
-    {
-        $this->roles = $roles;
     }
 
     public function getBirthDate(): ?string

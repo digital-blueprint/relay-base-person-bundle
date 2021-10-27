@@ -21,10 +21,4 @@ class PersonTest extends TestCase
 
         $this->assertSame(null, $person->getExtraData('nope'));
     }
-
-    public function testRoles()
-    {
-        $person = new Person();
-        $this->assertSame([], $person->getRoles());
-    }
 }

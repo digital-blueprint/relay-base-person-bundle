@@ -52,14 +52,4 @@ class DummyPersonProvider implements PersonProviderInterface
     {
         $this->person->setIdentifier($identifier);
     }
-
-    public function getRolesForCurrentPerson(): array
-    {
-        return $this->person->getRoles();
-    }
-
-    public function setRolesForCurrentPerson(array $roles): void
-    {
-        $this->person->setRoles($roles);
-    }
 }

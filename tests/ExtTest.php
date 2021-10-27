@@ -20,7 +20,6 @@ class ExtTest extends ApiTestCase
     {
         $person = new Person();
         $person->setIdentifier($user->getUserIdentifier());
-        $person->setRoles($user->getRoles());
         $personProvider = new DummyPersonProvider($person);
         $container = $client->getContainer();
         $container->set('test.PersonProviderInterface', $personProvider);
@@ -77,18 +76,6 @@ class ExtTest extends ApiTestCase
 
         // Make sure we have etag caching enabled
         $this->assertArrayHasKey('etag', $header);
-    }
-
-    public function testGetPersonRoles()
-    {
-        $client = $this->withUser('foobar', ['ROLE'], '42');
-        $user = $this->getUser($client);
-        $this->withPerson($client, $user);
-        $response = $client->request('GET', '/base/people/foobar', ['headers' => [
-            'Authorization' => 'Bearer 42',
-        ]]);
-        $data = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
-        $this->assertEquals(['ROLE'], $data['roles']);
     }
 
     public function testAuthChecks()
