@@ -10,7 +10,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  * @ApiResource(
  *     collectionOperations={
  *         "get" = {
- *             "path" = "/people",
+ *             "path" = "/base/people",
  *             "openapi_context" = {
  *                 "tags" = {"BasePerson"},
  *                 "parameters" = {
@@ -21,7 +21,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *     },
  *     itemOperations={
  *         "get" = {
- *             "path" = "/people/{identifier}",
+ *             "path" = "/base/people/{identifier}",
  *             "openapi_context" = {
  *                 "tags" = {"BasePerson"},
  *             }
@@ -29,6 +29,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *         },
  *     },
  *     iri="http://schema.org/Person",
+ *     shortName="BasePerson",
  *     description="A person of the LDAP system",
  *     normalizationContext={
  *         "groups" = {"BasePerson:output"},
