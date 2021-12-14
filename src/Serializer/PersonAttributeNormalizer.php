@@ -26,6 +26,9 @@ class PersonAttributeNormalizer implements ContextAwareNormalizerInterface, Norm
         $this->security = $security;
     }
 
+    /**
+     *  @return array|string|int|float|bool|\ArrayObject|null
+     */
     public function normalize($object, $format = null, array $context = [])
     {
         // set the group "Person:current-user" for the current user
@@ -38,7 +41,7 @@ class PersonAttributeNormalizer implements ContextAwareNormalizerInterface, Norm
         return $this->normalizer->normalize($object, $format, $context);
     }
 
-    public function supportsNormalization($data, $format = null, array $context = [])
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
         // Make sure we're not called twice
         if (isset($context[self::ALREADY_CALLED])) {
