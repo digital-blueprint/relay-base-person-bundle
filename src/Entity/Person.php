@@ -37,7 +37,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *     }
  * )
  */
-class Person
+class Person implements PersonInterface
 {
     use PersonTrait;
 }

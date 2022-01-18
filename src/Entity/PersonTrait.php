@@ -59,7 +59,7 @@ trait PersonTrait
         $this->extraData = [];
     }
 
-    public function setIdentifier(string $identifier)
+    public function setIdentifier(string $identifier): void
     {
         $this->identifier = $identifier;
     }
@@ -74,7 +74,7 @@ trait PersonTrait
         return $this->givenName;
     }
 
-    public function setGivenName(?string $givenName)
+    public function setGivenName(?string $givenName): void
     {
         $this->givenName = $givenName;
     }
@@ -84,7 +84,7 @@ trait PersonTrait
         return $this->familyName;
     }
 
-    public function setFamilyName(?string $familyName)
+    public function setFamilyName(?string $familyName): void
     {
         $this->familyName = $familyName;
     }
@@ -94,7 +94,7 @@ trait PersonTrait
         return $this->email;
     }
 
-    public function setEmail(?string $email)
+    public function setEmail(?string $email): void
     {
         $this->email = $email;
     }
@@ -123,7 +123,7 @@ trait PersonTrait
         return $this->birthDate;
     }
 
-    public function setBirthDate(string $birthDate)
+    public function setBirthDate(string $birthDate): void
     {
         $this->birthDate = $birthDate;
     }
