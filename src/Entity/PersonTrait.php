@@ -74,7 +74,7 @@ trait PersonTrait
         return $this->givenName;
     }
 
-    public function setGivenName(?string $givenName): void
+    public function setGivenName(string $givenName): void
     {
         $this->givenName = $givenName;
     }
@@ -84,7 +84,7 @@ trait PersonTrait
         return $this->familyName;
     }
 
-    public function setFamilyName(?string $familyName): void
+    public function setFamilyName(string $familyName): void
     {
         $this->familyName = $familyName;
     }
@@ -94,7 +94,7 @@ trait PersonTrait
         return $this->email;
     }
 
-    public function setEmail(?string $email): void
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }

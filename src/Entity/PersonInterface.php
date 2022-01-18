@@ -12,15 +12,15 @@ interface PersonInterface
 
     public function getGivenName(): ?string;
 
-    public function setGivenName(?string $givenName): void;
+    public function setGivenName(string $givenName): void;
 
     public function getFamilyName(): ?string;
 
-    public function setFamilyName(?string $familyName): void;
+    public function setFamilyName(string $familyName): void;
 
     public function getEmail(): ?string;
 
-    public function setEmail(?string $email): void;
+    public function setEmail(string $email): void;
 
     public function getBirthDate(): ?string;
 
