@@ -43,11 +43,6 @@ class DummyPersonProvider implements PersonProviderInterface
         throw new ItemNotFoundException();
     }
 
-    public function getPersonsByNameAndBirthDate(string $givenName, string $familyName, string $birthDate): array
-    {
-        return [];
-    }
-
     public function setCurrentIdentifier(string $identifier): void
     {
         $this->person->setIdentifier($identifier);

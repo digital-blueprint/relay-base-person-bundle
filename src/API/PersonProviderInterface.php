@@ -15,11 +15,6 @@ interface PersonProviderInterface
      */
     public function getPersons(array $filters): array;
 
-    /**
-     * @return Person[]
-     */
-    public function getPersonsByNameAndBirthDate(string $givenName, string $familyName, string $birthDate): array;
-
     public function getPerson(string $id): Person;
 
     /**

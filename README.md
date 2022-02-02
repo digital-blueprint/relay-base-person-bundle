@@ -58,13 +58,6 @@ class PersonProvider implements PersonProviderInterface
         return $people;
     }
 
-    public function getPersonsByNameAndBirthDate(string $givenName, string $familyName, string $birthDate): array
-    {
-        $people = some_method_to_fetch_persons_by_name_and_birthday($givenName, $familyName, $birthDate);
-
-        return $people;
-    }
-
     public function getPerson(string $id): Person
     {
         return some_method_to_fetch_person_by_id($id);

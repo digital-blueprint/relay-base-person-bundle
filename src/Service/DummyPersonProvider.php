@@ -29,11 +29,6 @@ class DummyPersonProvider implements PersonProviderInterface
         return [];
     }
 
-    public function getPersonsByNameAndBirthDate(string $givenName, string $familyName, string $birthDate): array
-    {
-        return [];
-    }
-
     public function getPerson(string $id): Person
     {
         $person = new Person();
