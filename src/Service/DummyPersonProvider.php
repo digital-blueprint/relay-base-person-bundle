@@ -49,11 +49,6 @@ class DummyPersonProvider implements PersonProviderInterface
         return $this->getPerson($this->currentIdentifier);
     }
 
-    public function getPersonForExternalService(string $service, string $serviceID): Person
-    {
-        return new Person();
-    }
-
     public function setCurrentIdentifier(string $identifier): void
     {
         $this->currentIdentifier = $identifier;

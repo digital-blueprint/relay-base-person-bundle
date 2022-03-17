@@ -18,14 +18,6 @@ interface PersonProviderInterface
     public function getPerson(string $id): Person;
 
     /**
-     * This is only used by external services (e.g. the alma bundle) to translate external persons to internal persons.
-     *
-     * @param string $service   identifies the service that wants to fetch a person
-     * @param string $serviceID identifies person by an external id
-     */
-    public function getPersonForExternalService(string $service, string $serviceID): Person;
-
-    /**
      * Returns the Person matching the current user. Or null if there is no associated person
      * like when the client is another server.
      */
