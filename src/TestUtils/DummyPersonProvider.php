@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Dbp\Relay\BasePersonBundle\TestUtils;
 
-use ApiPlatform\Core\Exception\ItemNotFoundException;
 use Dbp\Relay\BasePersonBundle\API\PersonProviderInterface;
 use Dbp\Relay\BasePersonBundle\Entity\Person;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
