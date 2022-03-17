@@ -38,11 +38,6 @@ class DummyPersonProvider implements PersonProviderInterface
         return $this->person;
     }
 
-    public function getPersonForExternalService(string $service, string $serviceID): Person
-    {
-        throw new ItemNotFoundException();
-    }
-
     public function setCurrentIdentifier(string $identifier): void
     {
         $this->person->setIdentifier($identifier);
