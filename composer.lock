@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2fca329159e67a5c9c61da2a9b26f8e6",
+    "content-hash": "c85f2d4351aba334661c608bc4d05181",
     "packages": [
         {
             "name": "api-platform/core",
@@ -172,7 +172,7 @@
             "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://gitlab.tugraz.at/dbp/relay/dbp-relay-core-bundle",
+                "url": "git@gitlab.tugraz.at:dbp/relay/dbp-relay-core-bundle.git",
                 "reference": "ad6f2efb52a6dc3c8ee730bc4652a6486e5dd539"
             },
             "require": {
@@ -229,7 +229,42 @@
                     "Dbp\\Relay\\CoreBundle\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Dbp\\Relay\\CoreBundle\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "post-install-cmd": [
+                    "cghooks add --ignore-lock"
+                ],
+                "post-update-cmd": [
+                    "cghooks update"
+                ],
+                "test": [
+                    "@php vendor/bin/phpunit"
+                ],
+                "phpstan": [
+                    "@php vendor/bin/phpstan analyze --ansi"
+                ],
+                "psalm": [
+                    "@php vendor/bin/psalm"
+                ],
+                "lint": [
+                    "@composer run cs",
+                    "@composer run phpstan",
+                    "@composer run psalm"
+                ],
+                "cs-fix": [
+                    "@php vendor/bin/php-cs-fixer --ansi fix"
+                ],
+                "cs": [
+                    "@php vendor/bin/php-cs-fixer --ansi fix --dry-run --diff"
+                ],
+                "coverage": [
+                    "@php -dxdebug.mode=coverage vendor/bin/phpunit --coverage-html _coverage"
+                ]
+            },
             "license": [
                 "AGPL-3.0-or-later"
             ],
@@ -10014,5 +10049,5 @@
     "platform-overrides": {
         "php": "7.3"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }

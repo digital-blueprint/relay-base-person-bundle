@@ -31,6 +31,12 @@
         "symfony/phpunit-bridge": "^5.2",
         "vimeo/psalm": "^4.4"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@gitlab.tugraz.at:dbp/relay/dbp-relay-core-bundle.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Dbp\\Relay\\BasePersonBundle\\": "src/"
