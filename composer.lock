@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c85f2d4351aba334661c608bc4d05181",
+    "content-hash": "3502da8ce4bc90705531e3eaff7ba6d6",
     "packages": [
         {
             "name": "api-platform/core",
@@ -172,14 +172,8 @@
             "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://gitlab.tugraz.at/dbp/relay/dbp-relay-core-bundle.git",
-                "reference": "d26c15b56035d0fc4277a8b6e1f49148b1c7653e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://gitlab.tugraz.at/api/v4/projects/dbp%2Frelay%2Fdbp-relay-core-bundle/repository/archive.zip?sha=d26c15b56035d0fc4277a8b6e1f49148b1c7653e",
-                "reference": "d26c15b56035d0fc4277a8b6e1f49148b1c7653e",
-                "shasum": ""
+                "url": "git@gitlab.tugraz.at:dbp/relay/dbp-relay-core-bundle.git",
+                "reference": "d957d248aff513901e89d6eeb7dc8d0e3f68ea63"
             },
             "require": {
                 "api-platform/core": "^2.6.6",
@@ -275,11 +269,7 @@
                 "AGPL-3.0-or-later"
             ],
             "description": "The core bundle of the Relay API gateway",
-            "support": {
-                "source": "https://gitlab.tugraz.at/dbp/relay/dbp-relay-core-bundle/-/tree/main",
-                "issues": "https://gitlab.tugraz.at/dbp/relay/dbp-relay-core-bundle/-/issues"
-            },
-            "time": "2022-04-23T02:26:01+02:00"
+            "time": "2022-04-26T12:25:46+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -10041,8 +10031,8 @@
         {
             "package": "dbp/relay-core-bundle",
             "version": "dev-main",
-            "alias": "0.1.32",
-            "alias_normalized": "0.1.32.0"
+            "alias": "0.1.34",
+            "alias_normalized": "0.1.34.0"
         }
     ],
     "minimum-stability": "stable",
@@ -10059,5 +10049,5 @@
     "platform-overrides": {
         "php": "7.3"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }
