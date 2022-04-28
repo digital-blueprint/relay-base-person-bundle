@@ -15,7 +15,7 @@ interface PersonProviderInterface
      */
     public function getPersons(array $filters): array;
 
-    public function getPerson(string $id): Person;
+    public function getPerson(string $id, array $options = []): Person;
 
     /**
      * Returns the Person matching the current user. Or null if there is no associated person

@@ -8,6 +8,7 @@ use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use Dbp\Relay\BasePersonBundle\API\PersonProviderInterface;
 use Dbp\Relay\BasePersonBundle\Entity\Person;
+use Dbp\Relay\CoreBundle\LocalData\LocalData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class PersonItemDataProvider extends AbstractController implements ItemDataProviderInterface, RestrictedDataProviderInterface
@@ -28,10 +29,11 @@ final class PersonItemDataProvider extends AbstractController implements ItemDat
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $person = null;
-        $api = $this->api;
-        $person = $api->getPerson($id);
+        $filters = $context['filters'] ?? [];
 
-        return $person;
+        $options = [];
+        $options[LocalData::INCLUDE_PARAMETER_NAME] = LocalData::getIncludeParameter($filters);
+
+        return $this->api->getPerson($id, $options);
     }
 }

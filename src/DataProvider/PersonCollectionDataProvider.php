@@ -36,19 +36,17 @@ final class PersonCollectionDataProvider extends AbstractController implements C
         $api = $this->api;
         $filters = $context['filters'] ?? [];
 
-        if (isset($context['filters']['page'])) {
-            $page = (int) $context['filters']['page'];
+        if (isset($filters['page'])) {
+            $page = (int) $filters['page'];
         }
 
-        if (isset($context['filters']['perPage'])) {
-            $perPage = (int) $context['filters']['perPage'];
+        if (isset($filters['perPage'])) {
+            $perPage = (int) $filters['perPage'];
         }
 
         $persons = $api->getPersons($filters);
 
         // TODO: do pagination via API
-        $pagination = new ArrayFullPaginator($persons, $page, $perPage);
-
-        return $pagination;
+        return new ArrayFullPaginator($persons, $page, $perPage);
     }
 }

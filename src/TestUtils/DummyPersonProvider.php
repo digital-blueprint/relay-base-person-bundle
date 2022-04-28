@@ -23,7 +23,7 @@ class DummyPersonProvider implements PersonProviderInterface
         return [$this->person];
     }
 
-    public function getPerson(string $id): Person
+    public function getPerson(string $id, array $options = []): Person
     {
         if ($id !== $this->person->getIdentifier()) {
             throw new NotFoundHttpException();

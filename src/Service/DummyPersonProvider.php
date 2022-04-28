@@ -29,7 +29,7 @@ class DummyPersonProvider implements PersonProviderInterface
         return [];
     }
 
-    public function getPerson(string $id): Person
+    public function getPerson(string $id, array $options = []): Person
     {
         $person = new Person();
         $person->setIdentifier($id);
