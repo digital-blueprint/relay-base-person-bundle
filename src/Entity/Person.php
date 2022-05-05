@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dbp\Relay\BasePersonBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Dbp\Relay\CoreBundle\LocalData\LocalDataAwareInterface;
 use Dbp\Relay\CoreBundle\LocalData\LocalDataAwareTrait;
@@ -16,7 +17,6 @@ use Dbp\Relay\CoreBundle\LocalData\LocalDataAwareTrait;
  *             "openapi_context" = {
  *                 "tags" = {"BasePerson"},
  *                 "parameters" = {
- *                     {"name" = "search", "in" = "query", "description" = "Search for a person name", "type" = "string", "example" = "woody007"},
  *                     {"name" = "includeLocal", "in" = "query", "description" = "Local data attributes to include", "type" = "string"}
  *                 }
  *             }
@@ -43,6 +43,19 @@ use Dbp\Relay\CoreBundle\LocalData\LocalDataAwareTrait;
  *         "jsonld_embed_context" = true,
  *     }
  * )
+ * @ApiFilter(CustomFilter::class, arguments={
+ *     "description" = {
+ *         "search" = {
+ *             "property" = null,
+ *             "required" = false,
+ *             "description" = "Search for a person name",
+ *             "schema" = {
+ *                 "type" = "string",
+ *                 "example" = "Max Mustermann",
+ *             },
+ *         },
+ *     }
+ * })
  */
 class Person implements PersonInterface, LocalDataAwareInterface
 {
