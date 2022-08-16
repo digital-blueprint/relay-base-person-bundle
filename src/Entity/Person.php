@@ -49,7 +49,7 @@ use Dbp\Relay\CoreBundle\LocalData\LocalDataAwareTrait;
  *         "search" = {
  *             "property" = null,
  *             "required" = false,
- *             "description" = "Search for a person name",
+ *             "description" = "Search filter (whitespace separated list of search terms to perform a partial, case-insensitive text search on person's full name with)",
  *             "schema" = {
  *                 "type" = "string",
  *                 "example" = "Max Mustermann",
