@@ -17,7 +17,8 @@ use Dbp\Relay\CoreBundle\LocalData\LocalDataAwareTrait;
  *             "openapi_context" = {
  *                 "tags" = {"BasePerson"},
  *                 "parameters" = {
- *                     {"name" = "includeLocal", "in" = "query", "description" = "Local data attributes to include", "type" = "string"}
+ *                     {"name" = "includeLocal", "in" = "query", "description" = "Local data attributes to include", "type" = "string"},
+ *                     {"name" = "queryLocal", "in" = "query", "description" = "Local query parameters to apply", "type" = "string"},
  *                 }
  *             }
  *         },
@@ -61,4 +62,6 @@ class Person implements PersonInterface, LocalDataAwareInterface
 {
     use LocalDataAwareTrait;
     use PersonTrait;
+
+    public const SEARCH_PARAMETER_NAME = 'search';
 }

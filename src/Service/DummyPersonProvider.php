@@ -19,7 +19,7 @@ class DummyPersonProvider implements PersonProviderInterface
         $this->currentIdentifier = null;
     }
 
-    public function getPersons(array $filters): array
+    public function getPersons(array $options): array
     {
         $person = $this->getCurrentPerson();
         if ($person !== null) {

@@ -18,7 +18,7 @@ class DummyPersonProvider implements PersonProviderInterface
         $this->person = $person;
     }
 
-    public function getPersons(array $filters): array
+    public function getPersons(array $options): array
     {
         return [$this->person];
     }

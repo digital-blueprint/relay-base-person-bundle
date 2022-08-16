@@ -32,7 +32,7 @@ final class PersonItemDataProvider extends AbstractController implements ItemDat
         $filters = $context['filters'] ?? [];
 
         $options = [];
-        $options[LocalData::INCLUDE_PARAMETER_NAME] = LocalData::getIncludeParameter($filters);
+        LocalData::addOptions($options, $filters);
 
         return $this->api->getPerson($id, $options);
     }

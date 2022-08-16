@@ -9,6 +9,7 @@ use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use Dbp\Relay\BasePersonBundle\API\PersonProviderInterface;
 use Dbp\Relay\BasePersonBundle\Entity\Person;
 use Dbp\Relay\CoreBundle\Helpers\ArrayFullPaginator;
+use Dbp\Relay\CoreBundle\LocalData\LocalData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class PersonCollectionDataProvider extends AbstractController implements CollectionDataProviderInterface, RestrictedDataProviderInterface
@@ -33,8 +34,16 @@ final class PersonCollectionDataProvider extends AbstractController implements C
 
         $perPage = self::ITEMS_PER_PAGE;
         $page = 1;
-        $api = $this->api;
         $filters = $context['filters'] ?? [];
+        $options = [];
+
+        if ($search = ($filters['search'] ?? null)) {
+            $options[Person::SEARCH_PARAMETER_NAME] = $search;
+        }
+
+        LocalData::addOptions($options, $filters);
+
+        $persons = $this->api->getPersons($filters);
 
         if (isset($filters['page'])) {
             $page = (int) $filters['page'];
@@ -43,8 +52,6 @@ final class PersonCollectionDataProvider extends AbstractController implements C
         if (isset($filters['perPage'])) {
             $perPage = (int) $filters['perPage'];
         }
-
-        $persons = $api->getPersons($filters);
 
         // TODO: do pagination via API
         return new ArrayFullPaginator($persons, $page, $perPage);
