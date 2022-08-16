@@ -22,6 +22,8 @@ interface PersonProviderInterface
     public function getPersons(array $options): array;
 
     /**
+     * Throws an HTTP_NOT_FOUND exception if no person with the given ID can be found.
+     *
      * @param array $options Available options:
      *                       * LocalData::INCLUDE_PARAMETER_NAME
      *
@@ -31,7 +33,9 @@ interface PersonProviderInterface
 
     /**
      * Returns the Person matching the current user. Or null if there is no associated person
-     * like when the client is another server.
+     * like when the client is another server. Throws an HTTP_NOT_FOUND exception if no person is found for the current user.
+     *
+     * @throws ApiError
      */
     public function getCurrentPerson(): ?Person;
 }
