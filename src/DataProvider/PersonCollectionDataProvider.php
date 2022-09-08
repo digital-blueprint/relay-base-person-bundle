@@ -43,7 +43,7 @@ final class PersonCollectionDataProvider extends AbstractController implements C
 
         LocalData::addOptions($options, $filters);
 
-        $persons = $this->api->getPersons($filters);
+        $persons = $this->api->getPersons($options);
 
         if (isset($filters['page'])) {
             $page = (int) $filters['page'];
