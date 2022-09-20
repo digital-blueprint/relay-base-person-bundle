@@ -6,6 +6,7 @@ namespace Dbp\Relay\BasePersonBundle\API;
 
 use Dbp\Relay\BasePersonBundle\Entity\Person;
 use Dbp\Relay\CoreBundle\Exception\ApiError;
+use Dbp\Relay\CoreBundle\Pagination\Paginator;
 
 interface PersonProviderInterface
 {
@@ -16,10 +17,8 @@ interface PersonProviderInterface
      *                       * LocalData::QUERY_PARAMETER_NAME
      *
      * @throws ApiError
-     *
-     * @return Person[]
      */
-    public function getPersons(array $options): array;
+    public function getPersons(array $options): Paginator;
 
     /**
      * Throws an HTTP_NOT_FOUND exception if no person with the given ID can be found.

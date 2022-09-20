@@ -19,6 +19,7 @@ use Dbp\Relay\CoreBundle\LocalData\LocalDataAwareTrait;
  *                 "parameters" = {
  *                     {"name" = "includeLocal", "in" = "query", "description" = "Local data attributes to include", "type" = "string"},
  *                     {"name" = "queryLocal", "in" = "query", "description" = "Local query parameters to apply", "type" = "string"},
+ *                     {"name" = "partialPagination", "in" = "query", "description" = "Partial pagination", "type" = "bool", "example" = "false"}
  *                 }
  *             }
  *         },

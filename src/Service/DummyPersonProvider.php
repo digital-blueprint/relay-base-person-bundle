@@ -6,6 +6,9 @@ namespace Dbp\Relay\BasePersonBundle\Service;
 
 use Dbp\Relay\BasePersonBundle\API\PersonProviderInterface;
 use Dbp\Relay\BasePersonBundle\Entity\Person;
+use Dbp\Relay\CoreBundle\Pagination\FullPaginator;
+use Dbp\Relay\CoreBundle\Pagination\Pagination;
+use Dbp\Relay\CoreBundle\Pagination\Paginator;
 
 class DummyPersonProvider implements PersonProviderInterface
 {
@@ -19,14 +22,15 @@ class DummyPersonProvider implements PersonProviderInterface
         $this->currentIdentifier = null;
     }
 
-    public function getPersons(array $options): array
+    public function getPersons(array $options): Paginator
     {
-        $person = $this->getCurrentPerson();
-        if ($person !== null) {
-            return [$person];
+        $persons = [];
+        $currentPerson = $this->getCurrentPerson();
+        if ($currentPerson !== null) {
+            $persons[] = $currentPerson;
         }
 
-        return [];
+        return new FullPaginator($persons, 1, Pagination::MAX_NUM_ITEMS_PER_PAGE_DEFAULT, count($persons));
     }
 
     public function getPerson(string $id, array $options = []): Person
