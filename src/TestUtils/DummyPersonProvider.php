@@ -6,9 +6,6 @@ namespace Dbp\Relay\BasePersonBundle\TestUtils;
 
 use Dbp\Relay\BasePersonBundle\API\PersonProviderInterface;
 use Dbp\Relay\BasePersonBundle\Entity\Person;
-use Dbp\Relay\CoreBundle\Pagination\FullPaginator;
-use Dbp\Relay\CoreBundle\Pagination\Pagination;
-use Dbp\Relay\CoreBundle\Pagination\Paginator;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DummyPersonProvider implements PersonProviderInterface
@@ -21,11 +18,9 @@ class DummyPersonProvider implements PersonProviderInterface
         $this->person = $person;
     }
 
-    public function getPersons(array $options): Paginator
+    public function getPersons(int $currentPageNumber, int $maxNumItemsPerPage, array $options = []): array
     {
-        $persons = [$this->person];
-
-        return new FullPaginator($persons, 1, Pagination::MAX_NUM_ITEMS_PER_PAGE_DEFAULT, count($persons));
+        return [$this->person];
     }
 
     public function getPerson(string $id, array $options = []): Person

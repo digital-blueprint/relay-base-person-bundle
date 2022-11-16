@@ -6,8 +6,7 @@ services:
   Dbp\Relay\BasePersonBundle\API\PersonProviderInterface:
     '@Dbp\Relay\BasePersonBundle\Service\DummyPersonProvider'
 
-  Dbp\Relay\BasePersonBundle\DataProvider\:
-    resource: '../../DataProvider'
+  Dbp\Relay\BasePersonBundle\DataProvider\PersonDataProvider:
     autowire: true
     autoconfigure: true
 
