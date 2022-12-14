@@ -29,7 +29,7 @@ use Dbp\Relay\CoreBundle\LocalData\LocalDataAwareTrait;
  *             "openapi_context" = {
  *                 "tags" = {"BasePerson"},
  *                 "parameters" = {
- *                     {"name" = "identifier", "in" = "path", "description" = "Resource identifier", "required" = true, "type" = "string", "example" = "woody007"},
+ *                     {"name" = "identifier", "in" = "path", "description" = "Resource identifier", "required" = true, "type" = "string", "example" = "811EC3ACC0ADCA70"},
  *                     {"name" = "includeLocal", "in" = "query", "description" = "Local data attributes to include", "type" = "string"}
  *                 }
  *             }
