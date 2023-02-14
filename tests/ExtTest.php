@@ -48,7 +48,8 @@ class ExtTest extends ApiTestCase
         $client = $this->withUser('foobar', [], '42');
         $user = $this->getUser($client);
         $person = $this->withPerson($client, $user);
-        $person->setEmail('foo@bar.com');
+        $person->setGivenName('Foo');
+        $person->setFamilyName('Bar');
         $response = $client->request('GET', '/base/people/foobar', ['headers' => [
             'Authorization' => 'Bearer 42',
         ]]);
@@ -56,7 +57,8 @@ class ExtTest extends ApiTestCase
         $data = json_decode($response->getContent(false), true, 512, JSON_THROW_ON_ERROR);
         $this->assertEquals('/base/people/foobar', $data['@id']);
         $this->assertEquals('foobar', $data['identifier']);
-        $this->assertEquals('foo@bar.com', $data['email']);
+        $this->assertEquals('Foo', $data['givenName']);
+        $this->assertEquals('Bar', $data['familyName']);
     }
 
     public function testResponseHeaders()

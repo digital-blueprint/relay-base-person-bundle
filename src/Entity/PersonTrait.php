@@ -36,7 +36,7 @@ trait PersonTrait
 
     /**
      * @ApiProperty(iri="http://schema.org/email")
-     * @Groups({"BasePerson:current-user", "BasePerson:extended-access"})
+     * @Groups({"BasePerson:email"})
      *
      * @var string
      */
@@ -45,7 +45,7 @@ trait PersonTrait
     /**
      * @var string
      * @ApiProperty(iri="http://schema.org/birthDate")
-     * @Groups({"BasePerson:current-user"})
+     * @Groups({"BasePerson:birthDate"})
      */
     private $birthDate;
 

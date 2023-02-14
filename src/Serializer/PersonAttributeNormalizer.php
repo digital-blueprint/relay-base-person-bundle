@@ -5,59 +5,12 @@ declare(strict_types=1);
 namespace Dbp\Relay\BasePersonBundle\Serializer;
 
 use Dbp\Relay\BasePersonBundle\Entity\Person;
-use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
+use Dbp\Relay\CoreBundle\Authorization\Serializer\AbstractEntityNormalizer;
 
-class PersonAttributeNormalizer implements ContextAwareNormalizerInterface, NormalizerAwareInterface
+class PersonAttributeNormalizer extends AbstractEntityNormalizer
 {
-    use NormalizerAwareTrait;
-
-    private const ALREADY_CALLED = 'LDAP_PERSON_ATTRIBUTE_NORMALIZER_CURRENT_USER_ALREADY_CALLED';
-
-    /**
-     * @var Security
-     */
-    private $security;
-
-    public function __construct(Security $security)
+    public function __construct()
     {
-        $this->security = $security;
-    }
-
-    /**
-     *  @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = [])
-    {
-        // set the group "Person:current-user" for the current user
-        if ($this->isCurrentUser($object)) {
-            $context['groups'][] = 'BasePerson:current-user';
-        }
-
-        $context[self::ALREADY_CALLED] = true;
-
-        return $this->normalizer->normalize($object, $format, $context);
-    }
-
-    public function supportsNormalization($data, $format = null, array $context = []): bool
-    {
-        // Make sure we're not called twice
-        if (isset($context[self::ALREADY_CALLED])) {
-            return false;
-        }
-
-        return $data instanceof Person;
-    }
-
-    /**
-     * @param Person $object
-     */
-    private function isCurrentUser($object): bool
-    {
-        $user = $this->security->getUser();
-
-        return $user ? $user->getUsername() === $object->getIdentifier() : false;
+        parent::__construct([Person::class]);
     }
 }
