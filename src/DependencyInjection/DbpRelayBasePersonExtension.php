@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Dbp\Relay\BasePersonBundle\DependencyInjection;
 
-use Dbp\Relay\BasePersonBundle\Serializer\PersonAttributeNormalizer;
 use Dbp\Relay\CoreBundle\Extension\ExtensionTrait;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -24,8 +23,5 @@ class DbpRelayBasePersonExtension extends ConfigurableExtension
             new FileLocator(__DIR__.'/../Resources/config')
         );
         $loader->load('services.yaml');
-
-        $personAttributeNormalizer = $container->getDefinition(PersonAttributeNormalizer::class);
-        $personAttributeNormalizer->addMethodCall('setConfig', [$mergedConfig]);
     }
 }

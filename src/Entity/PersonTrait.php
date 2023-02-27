@@ -36,7 +36,7 @@ trait PersonTrait
 
     /**
      * @ApiProperty(iri="http://schema.org/email")
-     * @Groups({"BasePerson:email"})
+     * @Groups({"BasePerson:output:email"})
      *
      * @var string
      */
@@ -45,7 +45,7 @@ trait PersonTrait
     /**
      * @var string
      * @ApiProperty(iri="http://schema.org/birthDate")
-     * @Groups({"BasePerson:birthDate"})
+     * @Groups({"BasePerson:output:birthDate"})
      */
     private $birthDate;
 
