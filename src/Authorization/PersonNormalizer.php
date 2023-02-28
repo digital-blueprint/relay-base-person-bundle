@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace Dbp\Relay\BasePersonBundle\Authorization;
 
 use Dbp\Relay\BasePersonBundle\Entity\Person;
-use Dbp\Relay\CoreBundle\Authorization\AbstractAuthorizationService;
 use Dbp\Relay\CoreBundle\Authorization\AuthorizationConfigDefinition;
+use Dbp\Relay\CoreBundle\Authorization\Serializer\AbstractEntityDeNormalizer;
 
-class AuthorizationService extends AbstractAuthorizationService
+class PersonNormalizer extends AbstractEntityDeNormalizer
 {
     public function __construct()
     {
-        $isLoggedInUserExpression = 'user.getIdentifier() == entity.getIdentifier()';
+        $isCurrentlyLoggedInUserExpression = 'user.getIdentifier() == entity.getIdentifier()';
 
-        $this->configure([], [], [
+        $this->configureEntities([
             'BasePerson' => [
                 AuthorizationConfigDefinition::ENTITY_CLASS_NAME_CONFIG_NODE => Person::class,
                 AuthorizationConfigDefinition::ENTITY_READ_ACCESS_CONFIG_NODE => [
-                    'email' => $isLoggedInUserExpression,
-                    'birthDate' => $isLoggedInUserExpression,
+                    'email' => $isCurrentlyLoggedInUserExpression,
+                    'birthDate' => $isCurrentlyLoggedInUserExpression,
                 ],
             ],
         ]);

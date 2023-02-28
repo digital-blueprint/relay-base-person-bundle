@@ -10,7 +10,7 @@ services:
     autowire: true
     autoconfigure: true
 
-  Dbp\Relay\BasePersonBundle\Authorization\AuthorizationService:
+  Dbp\Relay\BasePersonBundle\Authorization\PersonNormalizer:
     autowire: true
     autoconfigure: true
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cec90c82e15b22b04126f03784eae38f",
+    "content-hash": "4fc79f39b1258770790c8bd2d9761812",
     "packages": [
         {
             "name": "api-platform/core",
@@ -169,16 +169,16 @@
         },
         {
             "name": "dbp/relay-core-bundle",
-            "version": "v0.1.82",
+            "version": "v0.1.88",
             "source": {
                 "type": "git",
-                "url": "https://gitlab.tugraz.at/dbp/relay/dbp-relay-core-bundle.git",
-                "reference": "26b368389e5996a52a4afe7f718365e33bd16f91"
+                "url": "https://github.com/digital-blueprint/relay-core-bundle.git",
+                "reference": "3da7929f4f8efb6bd6cef0fbd9a64bb2d5c7e407"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.tugraz.at/api/v4/projects/dbp%2Frelay%2Fdbp-relay-core-bundle/repository/archive.zip?sha=26b368389e5996a52a4afe7f718365e33bd16f91",
-                "reference": "26b368389e5996a52a4afe7f718365e33bd16f91",
+                "url": "https://api.github.com/repos/digital-blueprint/relay-core-bundle/zipball/3da7929f4f8efb6bd6cef0fbd9a64bb2d5c7e407",
+                "reference": "3da7929f4f8efb6bd6cef0fbd9a64bb2d5c7e407",
                 "shasum": ""
             },
             "require": {
@@ -239,51 +239,16 @@
                     "Dbp\\Relay\\CoreBundle\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Dbp\\Relay\\CoreBundle\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "post-install-cmd": [
-                    "cghooks add --ignore-lock"
-                ],
-                "post-update-cmd": [
-                    "cghooks update"
-                ],
-                "test": [
-                    "@php vendor/bin/phpunit"
-                ],
-                "phpstan": [
-                    "@php vendor/bin/phpstan analyze --ansi"
-                ],
-                "psalm": [
-                    "@php vendor/bin/psalm"
-                ],
-                "lint": [
-                    "@composer run cs",
-                    "@composer run phpstan",
-                    "@composer run psalm"
-                ],
-                "cs-fix": [
-                    "@php vendor/bin/php-cs-fixer --ansi fix"
-                ],
-                "cs": [
-                    "@php vendor/bin/php-cs-fixer --ansi fix --dry-run --diff"
-                ],
-                "coverage": [
-                    "@php -dxdebug.mode=coverage vendor/bin/phpunit --coverage-html _coverage"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "AGPL-3.0-or-later"
             ],
             "description": "The core bundle of the Relay API gateway",
             "support": {
-                "source": "https://gitlab.tugraz.at/dbp/relay/dbp-relay-core-bundle/-/tree/v0.1.82",
-                "issues": "https://gitlab.tugraz.at/dbp/relay/dbp-relay-core-bundle/-/issues"
+                "issues": "https://github.com/digital-blueprint/relay-core-bundle/issues",
+                "source": "https://github.com/digital-blueprint/relay-core-bundle/tree/v0.1.88"
             },
-            "time": "2023-02-23T15:58:31+01:00"
+            "time": "2023-02-28T11:30:57+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -10138,5 +10103,5 @@
     "platform-overrides": {
         "php": "7.3"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }
