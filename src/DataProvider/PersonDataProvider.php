@@ -23,7 +23,12 @@ class PersonDataProvider extends AbstractDataProvider
         return Person::class;
     }
 
-    protected function getItemById($id, array $options = []): object
+    protected function isUserGrantedOperationAccess(int $operation): bool
+    {
+        return $this->isUserAuthenticated();
+    }
+
+    protected function getItemById($id, array $filters = [], array $options = []): object
     {
         return $this->personProvider->getPerson($id, $options);
     }
