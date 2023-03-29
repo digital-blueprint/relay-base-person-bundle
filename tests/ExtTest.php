@@ -7,7 +7,7 @@ namespace Dbp\Relay\BasePersonBundle\Tests;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use Dbp\Relay\BasePersonBundle\Entity\Person;
-use Dbp\Relay\BasePersonBundle\TestUtils\DummyPersonProvider;
+use Dbp\Relay\BasePersonBundle\Service\DummyPersonProvider;
 use Dbp\Relay\CoreBundle\TestUtils\UserAuthTrait;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -20,7 +20,8 @@ class ExtTest extends ApiTestCase
     {
         $person = new Person();
         $person->setIdentifier($user->getUserIdentifier());
-        $personProvider = new DummyPersonProvider($person);
+        $personProvider = new DummyPersonProvider();
+        $personProvider->setCurrentPerson($person);
         $container = $client->getContainer();
         $container->set('test.PersonProviderInterface', $personProvider);
 
@@ -64,6 +65,8 @@ class ExtTest extends ApiTestCase
     public function testResponseHeaders()
     {
         $client = $this->withUser('foobar', [], '42');
+        $user = $this->getUser($client);
+        $this->withPerson($client, $user);
         $response = $client->request('GET', '/base/people/foobar', ['headers' => [
             'Authorization' => 'Bearer 42',
         ]]);

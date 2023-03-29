@@ -6,20 +6,21 @@ namespace Dbp\Relay\BasePersonBundle\Service;
 
 use Dbp\Relay\BasePersonBundle\API\PersonProviderInterface;
 use Dbp\Relay\BasePersonBundle\Entity\Person;
+use Dbp\Relay\CoreBundle\Exception\ApiError;
+use Symfony\Component\HttpFoundation\Response;
 
 class DummyPersonProvider implements PersonProviderInterface
 {
     /**
-     * @var string|null
+     * @var Person|null
      */
-    private $currentIdentifier;
+    private $currentPerson;
 
     public function getPersons(int $currentPageNumber, int $maxNumItemsPerPage, array $options = []): array
     {
         $persons = [];
-        $currentPerson = $this->getCurrentPerson();
-        if ($currentPerson !== null) {
-            $persons[] = $currentPerson;
+        if ($this->currentPerson !== null) {
+            $persons[] = $this->currentPerson;
         }
 
         return $persons;
@@ -27,25 +28,20 @@ class DummyPersonProvider implements PersonProviderInterface
 
     public function getPerson(string $id, array $options = []): Person
     {
-        $person = new Person();
-        $person->setIdentifier($id);
-        $person->setGivenName('John');
-        $person->setFamilyName('Doe');
-
-        return $person;
-    }
-
-    public function getCurrentPerson(): ?Person
-    {
-        if ($this->currentIdentifier === null) {
-            return null;
+        if ($this->currentPerson === null || $id !== $this->currentPerson->getIdentifier()) {
+            throw ApiError::withDetails(Response::HTTP_NOT_FOUND);
         }
 
-        return $this->getPerson($this->currentIdentifier);
+        return $this->currentPerson;
     }
 
-    public function setCurrentIdentifier(string $identifier): void
+    public function getCurrentPerson(array $options = []): ?Person
     {
-        $this->currentIdentifier = $identifier;
+        return $this->currentPerson;
+    }
+
+    public function setCurrentPerson(Person $person): void
+    {
+        $this->currentPerson = $person;
     }
 }
