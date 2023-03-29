@@ -14,11 +14,6 @@ class DummyPersonProvider implements PersonProviderInterface
      */
     private $currentIdentifier;
 
-    public function __construct()
-    {
-        $this->currentIdentifier = null;
-    }
-
     public function getPersons(int $currentPageNumber, int $maxNumItemsPerPage, array $options = []): array
     {
         $persons = [];
@@ -36,7 +31,6 @@ class DummyPersonProvider implements PersonProviderInterface
         $person->setIdentifier($id);
         $person->setGivenName('John');
         $person->setFamilyName('Doe');
-        $person->setEmail('john.doe@example.com');
 
         return $person;
     }

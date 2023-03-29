@@ -26,7 +26,6 @@ trait PersonTrait
     private $givenName;
 
     /**
-     * @var string
      * @ApiProperty(iri="http://schema.org/familyName")
      * @Groups({"BasePerson:output"})
      *
@@ -38,26 +37,21 @@ trait PersonTrait
      * @ApiProperty(iri="http://schema.org/email")
      * @Groups({"BasePerson:output:email"})
      *
+     * @deprecated Request using localData
+     *
      * @var string
      */
     private $email;
 
     /**
-     * @var string
      * @ApiProperty(iri="http://schema.org/birthDate")
      * @Groups({"BasePerson:output:birthDate"})
+     *
+     * @deprecated Request using localDate
+     *
+     * @var string
      */
     private $birthDate;
-
-    /**
-     * @var array
-     */
-    private $extraData;
-
-    public function __construct()
-    {
-        $this->extraData = [];
-    }
 
     public function setIdentifier(string $identifier): void
     {
@@ -89,40 +83,25 @@ trait PersonTrait
         $this->familyName = $familyName;
     }
 
+    /** @deprecated  */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /** @deprecated  */
     public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
-    /**
-     * Allows attaching extra information to a Person object with
-     * some random key. You can get the value back via getExtraData().
-     *
-     * @param ?mixed $value
-     */
-    public function setExtraData(string $key, $value): void
-    {
-        $this->extraData[$key] = $value;
-    }
-
-    /**
-     * @return ?mixed
-     */
-    public function getExtraData(string $key)
-    {
-        return $this->extraData[$key] ?? null;
-    }
-
+    /** @deprecated  */
     public function getBirthDate(): ?string
     {
         return $this->birthDate;
     }
 
+    /** @deprecated  */
     public function setBirthDate(string $birthDate): void
     {
         $this->birthDate = $birthDate;
