@@ -1,6 +1,6 @@
 # DbpRelayBasePersonBundle
 
-[GitLab](https://gitlab.tugraz.at/dbp/relay/dbp-relay-base-person-bundle) | [Packagist](https://packagist.org/packages/dbp/relay-base-person-bundle)
+[GitHub](https://github.com/digital-blueprint/relay-base-person-bundle) | [Packagist](https://packagist.org/packages/dbp/relay-base-person-bundle)
 
 
 ## Integration into the Relay API Server
@@ -25,7 +25,7 @@ Dbp\Relay\CoreBundle\DbpRelayCoreBundle => ['all' => true],
 ## PersonProvider service
 
 For this bundle to work you need to create a service that implements
-[PersonProviderInterface](https://gitlab.tugraz.at/dbp/relay/dbp-relay-base-person-bundle/-/blob/main/src/API/PersonProviderInterface.php)
+[PersonProviderInterface](https://github.com/digital-blueprint/relay-base-person-bundle/blob/main/src/API/PersonProviderInterface.php)
 in your application.
 
 ### Example
