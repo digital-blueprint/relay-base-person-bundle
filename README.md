@@ -2,6 +2,7 @@
 
 [GitHub](https://github.com/digital-blueprint/relay-base-person-bundle) | [Packagist](https://packagist.org/packages/dbp/relay-base-person-bundle)
 
+[![Test](https://github.com/digital-blueprint/relay-base-person-bundle/actions/workflows/test.yml/badge.svg)](https://github.com/digital-blueprint/relay-base-person-bundle/actions/workflows/test.yml)
 
 ## Integration into the Relay API Server
 
