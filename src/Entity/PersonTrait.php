@@ -33,26 +33,6 @@ trait PersonTrait
      */
     private $familyName;
 
-    /**
-     * @ApiProperty(iri="http://schema.org/email")
-     * @Groups({"BasePerson:output:email"})
-     *
-     * @deprecated Request using localData
-     *
-     * @var string
-     */
-    private $email;
-
-    /**
-     * @ApiProperty(iri="http://schema.org/birthDate")
-     * @Groups({"BasePerson:output:birthDate"})
-     *
-     * @deprecated Request using localDate
-     *
-     * @var string
-     */
-    private $birthDate;
-
     public function setIdentifier(string $identifier): void
     {
         $this->identifier = $identifier;
@@ -81,29 +61,5 @@ trait PersonTrait
     public function setFamilyName(string $familyName): void
     {
         $this->familyName = $familyName;
-    }
-
-    /** @deprecated  */
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    /** @deprecated  */
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
-    }
-
-    /** @deprecated  */
-    public function getBirthDate(): ?string
-    {
-        return $this->birthDate;
-    }
-
-    /** @deprecated  */
-    public function setBirthDate(string $birthDate): void
-    {
-        $this->birthDate = $birthDate;
     }
 }

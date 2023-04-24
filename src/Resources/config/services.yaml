@@ -10,10 +10,6 @@ services:
     autowire: true
     autoconfigure: true
 
-  Dbp\Relay\BasePersonBundle\Authorization\PersonNormalizer:
-    autowire: true
-    autoconfigure: true
-
   # This alias exists, so we can replace the service during tests
   test.PersonProviderInterface:
     alias: 'Dbp\Relay\BasePersonBundle\API\PersonProviderInterface'
