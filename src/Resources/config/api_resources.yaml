@@ -1,0 +1,38 @@
+resources:
+  Dbp\Relay\BasePersonBundle\Entity\Person:
+    types: ['http://schema.org/Person']
+    shortName: "BasePerson"
+    description: "A person of the LDAP system"
+    normalizationContext:
+      groups: ["BasePerson:output", "LocalData:output"]
+      jsonld_embed_context: true
+    operations:
+      ApiPlatform\Metadata\GetCollection:
+        uriTemplate: "/base/people"
+        openapiContext:
+          tags: ["BasePerson"]
+          parameters:
+            - name: "includeLocal"
+              in: "query"
+              description: "Local data attributes to include"
+              type: "string"
+            - name: "queryLocal"
+              in: "query"
+              description: "Local query parameters to apply"
+              type: "string"
+      ApiPlatform\Metadata\Get:
+        provider: Dbp\Relay\BasePersonBundle\State\PersonDataProvider
+        uriTemplate: "/base/people/{identifier}"
+        openapiContext:
+          tags: ["BasePerson"]
+          parameters:
+            - name: "identifier"
+              in: "path"
+              description: "Resource identifier"
+              required: true
+              type: "string"
+              example: "811EC3ACC0ADCA70"
+            - name: "includeLocal"
+              in: "query"
+              description: "Local data attributes to include"
+              type: "string"

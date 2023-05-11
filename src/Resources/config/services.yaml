@@ -14,3 +14,7 @@ services:
   test.PersonProviderInterface:
     alias: 'Dbp\Relay\BasePersonBundle\API\PersonProviderInterface'
     public: true
+
+  Dbp\Relay\BasePersonBundle\State\PersonDataProvider:
+    autowire: true
+    autoconfigure: true

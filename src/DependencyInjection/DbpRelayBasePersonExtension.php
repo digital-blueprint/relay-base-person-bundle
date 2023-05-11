@@ -17,7 +17,7 @@ class DbpRelayBasePersonExtension extends ConfigurableExtension
 
     public function loadInternal(array $mergedConfig, ContainerBuilder $container)
     {
-        $this->addResourceClassDirectory($container, __DIR__.'/../Entity');
+        //$this->addResourceClassDirectory($container, __DIR__.'/../Entity');
 
         $loader = new YamlFileLoader(
             $container,
