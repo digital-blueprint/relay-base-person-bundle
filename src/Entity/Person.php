@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Dbp\Relay\BasePersonBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Dbp\Relay\CoreBundle\LocalData\LocalDataAwareInterface;
 use Dbp\Relay\CoreBundle\LocalData\LocalDataAwareTrait;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
@@ -58,10 +60,63 @@ use Dbp\Relay\CoreBundle\LocalData\LocalDataAwareTrait;
  *     }
  * })
  */
-class Person implements PersonInterface, LocalDataAwareInterface
+class Person implements LocalDataAwareInterface
 {
     use LocalDataAwareTrait;
-    use PersonTrait;
 
     public const SEARCH_PARAMETER_NAME = 'search';
+
+    /**
+     * @ApiProperty(identifier=true)
+     * @Groups({"BasePerson:output"})
+     *
+     * @var string
+     */
+    private $identifier;
+
+    /**
+     * @ApiProperty(iri="http://schema.org/givenName")
+     * @Groups({"BasePerson:output"})
+     *
+     * @var string
+     */
+    private $givenName;
+
+    /**
+     * @ApiProperty(iri="http://schema.org/familyName")
+     * @Groups({"BasePerson:output"})
+     *
+     * @var string
+     */
+    private $familyName;
+
+    public function setIdentifier(string $identifier): void
+    {
+        $this->identifier = $identifier;
+    }
+
+    public function getIdentifier(): ?string
+    {
+        return $this->identifier;
+    }
+
+    public function getGivenName(): ?string
+    {
+        return $this->givenName;
+    }
+
+    public function setGivenName(string $givenName): void
+    {
+        $this->givenName = $givenName;
+    }
+
+    public function getFamilyName(): ?string
+    {
+        return $this->familyName;
+    }
+
+    public function setFamilyName(string $familyName): void
+    {
+        $this->familyName = $familyName;
+    }
 }
