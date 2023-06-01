@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dbp\Relay\BasePersonBundle\Tests;
 
-use ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle;
+use ApiPlatform\Symfony\Bundle\ApiPlatformBundle;
 use Dbp\Relay\BasePersonBundle\DbpRelayBasePersonBundle;
 use Dbp\Relay\CoreBundle\DbpRelayCoreBundle;
 use Nelmio\CorsBundle\NelmioCorsBundle;
@@ -41,6 +41,7 @@ class Kernel extends BaseKernel
     protected function configureContainer(ContainerConfigurator $container)
     {
         $container->import('@DbpRelayCoreBundle/Resources/config/services_test.yaml');
+        $container->import('@DbpRelayBasePersonBundle/Resources/config/services_test.yaml');
         $container->extension('framework', [
             'test' => true,
             'secret' => '',
