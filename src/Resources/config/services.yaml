@@ -9,8 +9,3 @@ services:
   Dbp\Relay\BasePersonBundle\DataProvider\PersonDataProvider:
     autowire: true
     autoconfigure: true
-
-  # This alias exists, so we can replace the service during tests
-  test.PersonProviderInterface:
-    alias: 'Dbp\Relay\BasePersonBundle\API\PersonProviderInterface'
-    public: true
