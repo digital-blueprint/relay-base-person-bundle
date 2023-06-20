@@ -6,9 +6,9 @@ namespace Dbp\Relay\BasePersonBundle\DataProvider;
 
 use Dbp\Relay\BasePersonBundle\API\PersonProviderInterface;
 use Dbp\Relay\BasePersonBundle\Entity\Person;
-use Dbp\Relay\CoreBundle\DataProvider\AbstractDataProvider;
+use Dbp\Relay\CoreBundle\ApiPlatform\State\AbstractStateProvider;
 
-class PersonDataProvider extends AbstractDataProvider
+class PersonDataProvider extends AbstractStateProvider
 {
     /** @var PersonProviderInterface */
     private $personProvider;
@@ -25,7 +25,7 @@ class PersonDataProvider extends AbstractDataProvider
 
     protected function isUserGrantedOperationAccess(int $operation): bool
     {
-        return $this->isUserAuthenticated();
+        return $this->isAuthenticated();
     }
 
     protected function getItemById($id, array $filters = [], array $options = []): object
