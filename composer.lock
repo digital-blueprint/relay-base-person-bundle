@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "v2.7.12",
+            "version": "v2.7.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "8257741fca0e6e5a9b71096b3965a0a5547e8570"
+                "reference": "c1b4e5a71c2235ae5a4acc8b1cee6e0ffef24484"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/8257741fca0e6e5a9b71096b3965a0a5547e8570",
-                "reference": "8257741fca0e6e5a9b71096b3965a0a5547e8570",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/c1b4e5a71c2235ae5a4acc8b1cee6e0ffef24484",
+                "reference": "c1b4e5a71c2235ae5a4acc8b1cee6e0ffef24484",
                 "shasum": ""
             },
             "require": {
@@ -165,7 +165,7 @@
             ],
             "support": {
                 "issues": "https://github.com/api-platform/core/issues",
-                "source": "https://github.com/api-platform/core/tree/v2.7.12"
+                "source": "https://github.com/api-platform/core/tree/v2.7.13"
             },
             "funding": [
                 {
@@ -173,7 +173,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-28T09:05:30+00:00"
+            "time": "2023-06-22T11:16:50+00:00"
         },
         {
             "name": "dbp/relay-core-bundle",
@@ -10049,5 +10049,5 @@
     "platform-overrides": {
         "php": "7.3"
     },
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
