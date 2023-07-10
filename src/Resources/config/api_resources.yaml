@@ -31,10 +31,19 @@ resources:
               in: query
               description: 'Local data attributes to include'
               type: string
-            - name: queryLocal
+            - name: preparedFilter
               in: query
-              description: 'Local query parameters to apply'
+              description: 'Prepared filter to apply'
               type: string
+            - name: filter
+              in: query
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+              example: '{ "filter[givenName]": "Max" }'
+              style: form
+              explode: true
 
     properties:
       identifier:

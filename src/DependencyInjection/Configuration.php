@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
 
-        $rootNode->append(PersonDataProvider::getLocalDataConfigNodeDefinition());
+        PersonDataProvider::appendConfigNodeDefinitions($rootNode);
 
         return $treeBuilder;
     }

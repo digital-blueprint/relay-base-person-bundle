@@ -6,15 +6,17 @@ namespace Dbp\Relay\BasePersonBundle\DataProvider;
 
 use Dbp\Relay\BasePersonBundle\API\PersonProviderInterface;
 use Dbp\Relay\BasePersonBundle\Entity\Person;
-use Dbp\Relay\CoreBundle\ApiPlatform\State\AbstractStateProvider;
+use Dbp\Relay\CoreBundle\Rest\AbstractDataProvider;
 
-class PersonDataProvider extends AbstractStateProvider
+class PersonDataProvider extends AbstractDataProvider
 {
     /** @var PersonProviderInterface */
     private $personProvider;
 
     public function __construct(PersonProviderInterface $personProvider)
     {
+        parent::__construct();
+
         $this->personProvider = $personProvider;
     }
 
@@ -28,7 +30,7 @@ class PersonDataProvider extends AbstractStateProvider
         return $this->isAuthenticated();
     }
 
-    protected function getItemById($id, array $filters = [], array $options = []): object
+    protected function getItemById(string $id, array $filters = [], array $options = []): object
     {
         return $this->personProvider->getPerson($id, $options);
     }
