@@ -9,17 +9,35 @@ use Dbp\Relay\BasePersonBundle\Entity\Person;
 use Dbp\Relay\CoreBundle\Rest\AbstractDataProvider;
 use Dbp\Relay\CoreBundle\Rest\Options;
 use Dbp\Relay\CoreBundle\Rest\Query\Filter\Filter;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class PersonDataProvider extends AbstractDataProvider
 {
     /** @var PersonProviderInterface */
     private $personProvider;
 
+    /**
+     * @deprecated this is for backwards compatibility of the queryLocal parameter
+     *
+     * @var array
+     */
+    private $definedLocalDataAttributes = [];
+
     public function __construct(PersonProviderInterface $personProvider)
     {
         parent::__construct();
 
         $this->personProvider = $personProvider;
+    }
+
+    public function setConfig(array $config)
+    {
+        parent::setConfig($config);
+
+        // deprecated: this is for backwards compatibility of the queryLocal parameter
+        foreach ($config['local_data'] ?? [] as $localDataConfigEntry) {
+            $this->definedLocalDataAttributes[] = $localDataConfigEntry['local_data_attribute'];
+        }
     }
 
     protected function getResourceClass(): string
@@ -61,9 +79,10 @@ class PersonDataProvider extends AbstractDataProvider
     }
 
     /**
-     * @deprecated
-     *
      * @throws \Exception
+     *
+     * @deprecated query parameter localQuery is deprecated since core bundle version 1.1.15. Clients should use the
+     *             'filter' query parameter introduced in version 1.1.15 instead.
      */
     private function handleDeprecateQueryLocalParameter(array &$options, string $queryLocalParameter)
     {
@@ -72,8 +91,13 @@ class PersonDataProvider extends AbstractDataProvider
         foreach (explode(',', $queryLocalParameter) as $queryLocalAssignment) {
             $parts = explode(':', $queryLocalAssignment);
             if (count($parts) === 2) {
+                if (!in_array($parts[0], $this->definedLocalDataAttributes, true)) {
+                    throw new BadRequestException('local data attribute undefined');
+                }
                 $filter->getRootNode()->icontains($parts[0], $parts[1]);
                 $queryLocalAttributes[] = $parts[0];
+            } else {
+                throw new BadRequestException('invalid localQuery format');
             }
         }
         Options::addFilter($options, $filter);
@@ -81,7 +105,8 @@ class PersonDataProvider extends AbstractDataProvider
     }
 
     /**
-     * @deprecated
+     * @deprecated query parameter localQuery is deprecated since core bundle version 1.1.15. Clients should use the
+     *             'filter' query parameter introduced in version 1.1.15 instead.
      */
     private function removeEntitiesWithForbiddenLocalData(array $options, array $persons): array
     {
