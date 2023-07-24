@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "303cee51da63308fd5fce4ed3ca873c0",
+    "content-hash": "f3ce175c0462174f8064cf3d6e546761",
     "packages": [
         {
             "name": "api-platform/core",
@@ -177,16 +177,16 @@
         },
         {
             "name": "dbp/relay-core-bundle",
-            "version": "v0.1.115",
+            "version": "v0.1.116",
             "source": {
                 "type": "git",
                 "url": "https://github.com/digital-blueprint/relay-core-bundle.git",
-                "reference": "b9c5ca9b1b543895bc3c58d697c14fba1778b800"
+                "reference": "bf6a676aa99d2905425b1f6acaedc0b70e740e25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/digital-blueprint/relay-core-bundle/zipball/b9c5ca9b1b543895bc3c58d697c14fba1778b800",
-                "reference": "b9c5ca9b1b543895bc3c58d697c14fba1778b800",
+                "url": "https://api.github.com/repos/digital-blueprint/relay-core-bundle/zipball/bf6a676aa99d2905425b1f6acaedc0b70e740e25",
+                "reference": "bf6a676aa99d2905425b1f6acaedc0b70e740e25",
                 "shasum": ""
             },
             "require": {
@@ -254,9 +254,9 @@
             "description": "The core bundle of the Relay API gateway",
             "support": {
                 "issues": "https://github.com/digital-blueprint/relay-core-bundle/issues",
-                "source": "https://github.com/digital-blueprint/relay-core-bundle/tree/v0.1.115"
+                "source": "https://github.com/digital-blueprint/relay-core-bundle/tree/v0.1.116"
             },
-            "time": "2023-07-17T09:43:13+00:00"
+            "time": "2023-07-24T08:29:32+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -10049,5 +10049,5 @@
     "platform-overrides": {
         "php": "7.3"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }

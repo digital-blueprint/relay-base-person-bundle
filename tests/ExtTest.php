@@ -11,6 +11,10 @@ use Dbp\Relay\BasePersonBundle\Service\DummyPersonProvider;
 use Dbp\Relay\CoreBundle\TestUtils\UserAuthTrait;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class ExtTest extends ApiTestCase
 {
@@ -35,6 +39,9 @@ class ExtTest extends ApiTestCase
         $this->assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     */
     public function testGetPersonWrongAuth()
     {
         $client = $this->withUser('foobar', [], '42');
@@ -44,6 +51,13 @@ class ExtTest extends ApiTestCase
         $this->assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 
+    /**
+     * @throws RedirectionExceptionInterface
+     * @throws ClientExceptionInterface
+     * @throws \JsonException
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     */
     public function testGetPerson()
     {
         $client = $this->withUser('foobar', [], '42');
@@ -62,6 +76,37 @@ class ExtTest extends ApiTestCase
         $this->assertEquals('Bar', $data['familyName']);
     }
 
+    /**
+     * @throws RedirectionExceptionInterface
+     * @throws ClientExceptionInterface
+     * @throws \JsonException
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     */
+    public function testGetPersons()
+    {
+        $client = $this->withUser('foobar', [], '42');
+        $user = $this->getUser($client);
+        $person = $this->withPerson($client, $user);
+        $person->setGivenName('Foo');
+        $person->setFamilyName('Bar');
+        $response = $client->request('GET', '/base/people', ['headers' => [
+            'Authorization' => 'Bearer 42',
+        ]]);
+        $this->assertJson($response->getContent(false));
+        $personData = json_decode($response->getContent(false), true, 512, JSON_THROW_ON_ERROR)['hydra:member'][0];
+        $this->assertEquals('/base/people/foobar', $personData['@id']);
+        $this->assertEquals('foobar', $personData['identifier']);
+        $this->assertEquals('Foo', $personData['givenName']);
+        $this->assertEquals('Bar', $personData['familyName']);
+    }
+
+    /**
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ClientExceptionInterface
+     */
     public function testResponseHeaders()
     {
         $client = $this->withUser('foobar', [], '42');

@@ -9,10 +9,13 @@ use Dbp\Relay\BasePersonBundle\Entity\Person;
 use Dbp\Relay\CoreBundle\Rest\AbstractDataProvider;
 use Dbp\Relay\CoreBundle\Rest\Options;
 use Dbp\Relay\CoreBundle\Rest\Query\Filter\Filter;
+use Dbp\Relay\CoreBundle\Rest\Query\Filter\FilterTreeBuilder;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class PersonDataProvider extends AbstractDataProvider
 {
+    private const LOCAL_DATA_BASE_PATH = 'localData.';
+
     /** @var PersonProviderInterface */
     private $personProvider;
 
@@ -87,20 +90,20 @@ class PersonDataProvider extends AbstractDataProvider
     private function handleDeprecateQueryLocalParameter(array &$options, string $queryLocalParameter)
     {
         $queryLocalAttributes = [];
-        $filter = Filter::create();
+        $filterTreeBuilder = FilterTreeBuilder::create();
         foreach (explode(',', $queryLocalParameter) as $queryLocalAssignment) {
             $parts = explode(':', $queryLocalAssignment);
             if (count($parts) === 2) {
                 if (!in_array($parts[0], $this->definedLocalDataAttributes, true)) {
                     throw new BadRequestException('local data attribute undefined');
                 }
-                $filter->getRootNode()->icontains($parts[0], $parts[1]);
+                $filterTreeBuilder->iContains(self::LOCAL_DATA_BASE_PATH.$parts[0], $parts[1]);
                 $queryLocalAttributes[] = $parts[0];
             } else {
                 throw new BadRequestException('invalid localQuery format');
             }
         }
-        Options::addFilter($options, $filter);
+        Options::addFilter($options, $filterTreeBuilder->createFilter());
         $options['queryLocalAttributes'] = $queryLocalAttributes;
     }
 
