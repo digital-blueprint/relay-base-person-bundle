@@ -12,6 +12,9 @@ use Dbp\Relay\CoreBundle\Rest\Query\Filter\Filter;
 use Dbp\Relay\CoreBundle\Rest\Query\Filter\FilterTreeBuilder;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
+/**
+ * @extends AbstractDataProvider<Person>
+ */
 class PersonDataProvider extends AbstractDataProvider
 {
     private const LOCAL_DATA_BASE_PATH = 'localData.';
