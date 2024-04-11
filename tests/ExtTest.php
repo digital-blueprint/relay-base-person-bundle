@@ -24,6 +24,8 @@ class ExtTest extends ApiTestCase
     {
         $person = new Person();
         $person->setIdentifier($user->getUserIdentifier());
+        $person->setGivenName('John');
+        $person->setFamilyName('Doe');
         $personProvider = new DummyPersonProvider();
         $personProvider->setCurrentPerson($person);
         $container = $client->getContainer();
