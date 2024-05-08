@@ -15,24 +15,21 @@ class Person implements LocalDataAwareInterface
     public const SEARCH_PARAMETER_NAME = 'search';
 
     /**
-     * @Groups({"BasePerson:output"})
-     *
      * @var string
      */
+    #[Groups(['BasePerson:output'])]
     private $identifier;
 
     /**
-     * @Groups({"BasePerson:output"})
-     *
      * @var string
      */
+    #[Groups(['BasePerson:output'])]
     private $givenName;
 
     /**
-     * @Groups({"BasePerson:output"})
-     *
      * @var string
      */
+    #[Groups(['BasePerson:output'])]
     private $familyName;
 
     public function setIdentifier(string $identifier): void

@@ -1,6 +1,7 @@
 # Unreleased
 
 * Port to PHPUnit 10
+* Port from doctrine annotations to PHP attributes
 
 # v0.2.28
 
