@@ -14,6 +14,9 @@ class DummyPersonProvider implements PersonProviderInterface
 {
     private ?Person $currentPerson;
 
+    /**
+     * @return Person[]
+     */
     public function getPersons(int $currentPageNumber, int $maxNumItemsPerPage, array $options = []): array
     {
         $persons = [];

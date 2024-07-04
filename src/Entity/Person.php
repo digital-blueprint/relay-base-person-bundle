@@ -14,25 +14,16 @@ class Person implements LocalDataAwareInterface
 
     public const SEARCH_PARAMETER_NAME = 'search';
 
-    /**
-     * @var string
-     */
     #[Groups(['BasePerson:output'])]
-    private $identifier;
+    private ?string $identifier = null;
 
-    /**
-     * @var string
-     */
     #[Groups(['BasePerson:output'])]
-    private $givenName;
+    private ?string $givenName = null;
 
-    /**
-     * @var string
-     */
     #[Groups(['BasePerson:output'])]
-    private $familyName;
+    private ?string $familyName = null;
 
-    public function setIdentifier(string $identifier): void
+    public function setIdentifier(?string $identifier): void
     {
         $this->identifier = $identifier;
     }
@@ -47,7 +38,7 @@ class Person implements LocalDataAwareInterface
         return $this->givenName;
     }
 
-    public function setGivenName(string $givenName): void
+    public function setGivenName(?string $givenName): void
     {
         $this->givenName = $givenName;
     }
@@ -57,7 +48,7 @@ class Person implements LocalDataAwareInterface
         return $this->familyName;
     }
 
-    public function setFamilyName(string $familyName): void
+    public function setFamilyName(?string $familyName): void
     {
         $this->familyName = $familyName;
     }

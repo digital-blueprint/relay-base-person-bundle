@@ -18,15 +18,14 @@ class PersonDataProvider extends AbstractDataProvider
 {
     private const LOCAL_DATA_BASE_PATH = 'localData.';
 
-    /** @var PersonProviderInterface */
-    private $personProvider;
+    private PersonProviderInterface $personProvider;
 
     /**
      * @deprecated this is for backwards compatibility of the queryLocal parameter
      *
-     * @var array
+     * @var string[]
      */
-    private $definedLocalDataAttributes = [];
+    private array $definedLocalDataAttributes = [];
 
     public function __construct(PersonProviderInterface $personProvider)
     {
@@ -35,7 +34,7 @@ class PersonDataProvider extends AbstractDataProvider
         $this->personProvider = $personProvider;
     }
 
-    public function setConfig(array $config)
+    public function setConfig(array $config): void
     {
         parent::setConfig($config);
 
@@ -102,7 +101,7 @@ class PersonDataProvider extends AbstractDataProvider
      * @deprecated query parameter localQuery is deprecated since core bundle version 1.1.15. Clients should use the
      *             'filter' query parameter introduced in version 1.1.15 instead.
      */
-    private function handleDeprecateQueryLocalParameter(array &$options, string $queryLocalParameter)
+    private function handleDeprecateQueryLocalParameter(array &$options, string $queryLocalParameter): void
     {
         $queryLocalAttributes = [];
         $filterTreeBuilder = FilterTreeBuilder::create();
