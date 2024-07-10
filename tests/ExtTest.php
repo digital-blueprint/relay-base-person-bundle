@@ -50,7 +50,7 @@ class ExtTest extends ApiTestCase
         $response = $client->request('GET', '/base/people/foobar', ['headers' => [
             'Authorization' => 'Bearer NOT42',
         ]]);
-        $this->assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
+        $this->assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
     }
 
     /**
