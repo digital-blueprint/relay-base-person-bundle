@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.31
+
+* Adjust tests for minor core bundle changes
+
 ## v0.2.29
 
 * Port to PHPUnit 10
