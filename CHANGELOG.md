@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## v0.2.32
+## v0.2.33
 
 * Improve DummyPersonProvider
 

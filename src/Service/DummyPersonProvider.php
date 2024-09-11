@@ -70,7 +70,7 @@ class DummyPersonProvider implements PersonProviderInterface
     public function setCurrentPerson(Person $person): void
     {
         if ($person->getIdentifier()) {
-            $this->addPerson($this->currentPersonIdentifier, $person->getGivenName(), $person->getFamilyName());
+            $this->addPerson($person->getIdentifier(), $person->getGivenName(), $person->getFamilyName());
             $this->currentPersonIdentifier = $person->getIdentifier();
         }
     }
