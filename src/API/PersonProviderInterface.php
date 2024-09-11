@@ -17,7 +17,7 @@ interface PersonProviderInterface
      *
      * @throws ApiError
      */
-    public function getPerson(string $id, array $options = []): Person;
+    public function getPerson(string $identifier, array $options = []): Person;
 
     /**
      * @param array $options Available options:

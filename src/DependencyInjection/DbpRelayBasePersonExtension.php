@@ -15,6 +15,9 @@ class DbpRelayBasePersonExtension extends ConfigurableExtension
 {
     use ExtensionTrait;
 
+    /**
+     * @throws \Exception
+     */
     public function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         $this->addResourceClassDirectory($container, __DIR__.'/../Entity');
@@ -25,7 +28,7 @@ class DbpRelayBasePersonExtension extends ConfigurableExtension
         );
         $loader->load('services.yaml');
 
-        $defintion = $container->getDefinition(PersonDataProvider::class);
-        $defintion->addMethodCall('setConfig', [$mergedConfig]);
+        $definition = $container->getDefinition(PersonDataProvider::class);
+        $definition->addMethodCall('setConfig', [$mergedConfig]);
     }
 }
