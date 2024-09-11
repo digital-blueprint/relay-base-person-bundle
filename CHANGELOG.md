@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+## v0.2.32
+
+* Improve DummyPersonProvider
+
 ## v0.2.31
 
 * Adjust tests for minor core bundle changes
