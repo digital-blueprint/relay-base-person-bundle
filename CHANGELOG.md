@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v0.2.34
+
+* Adapt to core bundle >= v0.1.190
+
 ## v0.2.33
 
 * Improve DummyPersonProvider

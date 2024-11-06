@@ -126,7 +126,7 @@ class PersonDataProvider extends AbstractDataProvider
             // since this is only for backwards compatibility and there is currently no application of a local query
             // whee the read policy depends on the person entity
             // we base the decision only on the user for increased performance
-            if ($this->isGranted('@read-local-data:'.$queryLocalAttribute, new Person()) === false) {
+            if (!$this->isGrantedRole('@read-local-data:'.$queryLocalAttribute)) {
                 return [];
             }
         }
