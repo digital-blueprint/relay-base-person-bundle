@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v0.2.35
+
+* Add public test utilities TestPersonTrait::withCurrentPerson/withPerson
+
 ## v0.2.34
 
 * Adapt to core bundle >= v0.1.190

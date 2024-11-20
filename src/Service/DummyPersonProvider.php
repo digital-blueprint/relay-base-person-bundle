@@ -13,6 +13,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DummyPersonProvider implements PersonProviderInterface
 {
+    private const IDENTIFIER_KEY = 'identifier';
+    private const GIVEN_NAME_KEY = 'givenName';
+    private const FAMILY_NAME_KEY = 'familyName';
+    private const LOCAL_DATA_KEY = 'localData';
     /**
      * @var array<string, array>
      */
@@ -27,7 +31,7 @@ class DummyPersonProvider implements PersonProviderInterface
         $persons = [];
         foreach (array_slice($this->persons,
             Pagination::getFirstItemIndex($currentPageNumber, $maxNumItemsPerPage), $maxNumItemsPerPage) as $personData) {
-            $persons[] = $this->getPerson($personData['identifier'], $options);
+            $persons[] = $this->getPerson($personData[self::IDENTIFIER_KEY], $options);
         }
 
         return $persons;
@@ -42,12 +46,12 @@ class DummyPersonProvider implements PersonProviderInterface
         }
 
         $person = new Person();
-        $person->setIdentifier($personData['identifier']);
-        $person->setGivenName($personData['givenName']);
-        $person->setFamilyName($personData['familyName']);
+        $person->setIdentifier($personData[self::IDENTIFIER_KEY]);
+        $person->setGivenName($personData[self::GIVEN_NAME_KEY]);
+        $person->setFamilyName($personData[self::FAMILY_NAME_KEY]);
 
         foreach (Options::getLocalDataAttributes($options) as $localDataAttribute) {
-            if ($localDataAttributeValue = $personData['localData'][$localDataAttribute] ?? null) {
+            if (($localDataAttributeValue = $personData[self::LOCAL_DATA_KEY][$localDataAttribute] ?? null) !== null) {
                 $person->setLocalDataValue($localDataAttribute, $localDataAttributeValue);
             } else {
                 throw ApiError::withDetails(Response::HTTP_BAD_REQUEST,
@@ -78,10 +82,10 @@ class DummyPersonProvider implements PersonProviderInterface
     public function addPerson(string $identifier, string $givenName, string $familyName, array $localDataAttributes = []): void
     {
         $this->persons[$identifier] = [
-            'identifier' => $identifier,
-            'givenName' => $givenName,
-            'familyName' => $familyName,
-            'localData' => $localDataAttributes,
+            self::IDENTIFIER_KEY => $identifier,
+            self::GIVEN_NAME_KEY => $givenName,
+            self::FAMILY_NAME_KEY => $familyName,
+            self::LOCAL_DATA_KEY => $localDataAttributes,
         ];
     }
 

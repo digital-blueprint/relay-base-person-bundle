@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Dbp\Relay\BasePersonBundle\Tests;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
-use ApiPlatform\Symfony\Bundle\Test\Client;
-use Dbp\Relay\BasePersonBundle\Service\DummyPersonProvider;
+use Dbp\Relay\BasePersonBundle\TestUtils\TestPersonTrait;
 use Dbp\Relay\CoreBundle\TestUtils\UserAuthTrait;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
@@ -18,15 +16,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class ExtTest extends ApiTestCase
 {
     use UserAuthTrait;
-
-    private function withCurrentPerson(Client $client, UserInterface $user): void
-    {
-        $personProvider = new DummyPersonProvider();
-        $personProvider->addPerson($user->getUserIdentifier(), 'John', 'Doe');
-        $personProvider->setCurrentPersonIdentifier($user->getUserIdentifier());
-        $container = $client->getContainer();
-        $container->set('test.PersonProviderInterface', $personProvider);
-    }
+    use TestPersonTrait;
 
     public function testGetPersonNoAuth()
     {
@@ -58,7 +48,7 @@ class ExtTest extends ApiTestCase
     {
         $client = $this->withUser('foobar', [], '42');
         $user = $this->getUser($client);
-        $this->withCurrentPerson($client, $user);
+        $this->withCurrentPerson($client->getContainer(), $user->getUserIdentifier());
         $response = $client->request('GET', '/base/people/foobar', ['headers' => [
             'Authorization' => 'Bearer 42',
         ]]);
@@ -66,7 +56,7 @@ class ExtTest extends ApiTestCase
         $data = json_decode($response->getContent(false), true, 512, JSON_THROW_ON_ERROR);
         $this->assertEquals('/base/people/foobar', $data['@id']);
         $this->assertEquals('foobar', $data['identifier']);
-        $this->assertEquals('John', $data['givenName']);
+        $this->assertEquals('Jane', $data['givenName']);
         $this->assertEquals('Doe', $data['familyName']);
     }
 
@@ -81,7 +71,7 @@ class ExtTest extends ApiTestCase
     {
         $client = $this->withUser('foobar', [], '42');
         $user = $this->getUser($client);
-        $this->withCurrentPerson($client, $user);
+        $this->withCurrentPerson($client->getContainer(), $user->getUserIdentifier());
         $response = $client->request('GET', '/base/people', ['headers' => [
             'Authorization' => 'Bearer 42',
         ]]);
@@ -89,7 +79,7 @@ class ExtTest extends ApiTestCase
         $personData = json_decode($response->getContent(false), true, 512, JSON_THROW_ON_ERROR)['hydra:member'][0];
         $this->assertEquals('/base/people/foobar', $personData['@id']);
         $this->assertEquals('foobar', $personData['identifier']);
-        $this->assertEquals('John', $personData['givenName']);
+        $this->assertEquals('Jane', $personData['givenName']);
         $this->assertEquals('Doe', $personData['familyName']);
     }
 
@@ -103,7 +93,7 @@ class ExtTest extends ApiTestCase
     {
         $client = $this->withUser('foobar', [], '42');
         $user = $this->getUser($client);
-        $this->withCurrentPerson($client, $user);
+        $this->withCurrentPerson($client->getContainer(), $user->getUserIdentifier());
         $response = $client->request('GET', '/base/people/foobar', ['headers' => [
             'Authorization' => 'Bearer 42',
         ]]);
