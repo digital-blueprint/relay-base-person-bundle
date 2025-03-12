@@ -41,7 +41,6 @@ resources:
                 type: object
                 additionalProperties:
                   type: string
-              example: '{ "filter[givenName]": "Max" }'
               style: form
               explode: true
 
