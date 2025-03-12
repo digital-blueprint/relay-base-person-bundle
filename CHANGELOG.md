@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v0.2.36
+
+* Remove OpenApi example for the collection filter parameter, which makes the request fail if not removed before execution
+
 ## v0.2.35
 
 * Add public test utilities TestPersonTrait::withCurrentPerson/withPerson
