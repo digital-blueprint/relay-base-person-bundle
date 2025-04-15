@@ -8,10 +8,11 @@
         "api-platform/core": "^3.2",
         "dbp/relay-core-bundle": "^0.1.190",
         "symfony/config": "^6.4",
-        "symfony/framework-bundle": "^6.4",
         "symfony/dependency-injection": "^6.4",
+        "symfony/framework-bundle": "^6.4",
+        "symfony/http-foundation": "^6.4",
         "symfony/http-kernel": "^6.4",
-        "symfony/http-foundation": "^6.4"
+        "symfony/serializer": "^6.4"
     },
     "require-dev": {
         "captainhook/captainhook": "^5.25",
