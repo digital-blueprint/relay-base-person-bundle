@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## v0.2.37
+
+* Drop support for PHP 8.1
+* Drop support for Psalm
+* Drop support for Symfony 5
+* Add support for api-platform >=4.1 and drop for <3.4
+
 ## v0.2.36
 
 * Remove OpenApi example for the collection filter parameter, which makes the request fail if not removed before execution
