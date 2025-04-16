@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Dbp\Relay\BasePersonBundle\Tests;
 
-use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use Dbp\Relay\BasePersonBundle\TestUtils\TestPersonTrait;
+use Dbp\Relay\CoreBundle\TestUtils\AbstractApiTest;
 use Dbp\Relay\CoreBundle\TestUtils\UserAuthTrait;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
@@ -13,7 +13,7 @@ use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
-class ExtTest extends ApiTestCase
+class ExtTest extends AbstractApiTest
 {
     use UserAuthTrait;
     use TestPersonTrait;
