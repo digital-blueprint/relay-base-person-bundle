@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.2.39
+
 - Remove support for deprecate 'queryLocal' query parameter
 
 ## v0.2.38
