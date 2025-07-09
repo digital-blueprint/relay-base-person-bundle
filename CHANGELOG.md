@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.2.40
+
 - Remove support for api-platform 3
 - Add role `ROLE_READER` that is required for read operations
 
