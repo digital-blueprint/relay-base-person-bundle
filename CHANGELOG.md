@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Remove support for api-platform 3
+- Add role `ROLE_READER` that is required for read operations
+
 ## v0.2.39
 
 - Remove support for deprecate 'queryLocal' query parameter

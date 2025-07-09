@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dbp\Relay\BasePersonBundle\DataProvider;
 
 use Dbp\Relay\BasePersonBundle\API\PersonProviderInterface;
+use Dbp\Relay\BasePersonBundle\DependencyInjection\Configuration;
 use Dbp\Relay\BasePersonBundle\Entity\Person;
 use Dbp\Relay\CoreBundle\Rest\AbstractDataProvider;
 
@@ -37,13 +38,19 @@ class PersonDataProvider extends AbstractDataProvider
         return $this->personProvider->getPersons($currentPageNumber, $maxNumItemsPerPage, $options);
     }
 
+    protected function isCurrentUserGrantedOperationAccess(int $operation): bool
+    {
+        return $this->isGrantedRole(Configuration::ROLE_READER);
+    }
+
     protected function isGrantedReadAccessToLocalDataAttribute(string $localDataAttributeName): bool
     {
         // override default local data attribute read access policy for the GET person ITEM operation:
         // current users are always granted read access to their own local data attributes
-        // (even if their read access policy would evaluate to false)
-        if (!$this->isCurrentOperationACollectionOperation()
-            && $this->getCurrentUriVariables()[static::$identifierName] === $this->getUserIdentifier()) {
+        // (even if their read access policy evaluates to false)
+        if (false === $this->isCurrentOperationACollectionOperation()
+            && ($personIdentifier = $this->getCurrentUriVariables()[static::$identifierName] ?? null) !== null
+            && $personIdentifier === $this->getUserIdentifier()) {
             return true;
         }
 

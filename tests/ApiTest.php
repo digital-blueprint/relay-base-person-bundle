@@ -13,7 +13,7 @@ use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
-class ExtTest extends AbstractApiTest
+class ApiTest extends AbstractApiTest
 {
     use UserAuthTrait;
     use TestPersonTrait;
