@@ -91,6 +91,7 @@ class PersonDataProviderTest extends TestCase
             'MAY_READ_TITLE' => false,
         ]);
         $this->personProvider->addPerson(self::TEST_USER_IDENTIFIER, 'Test', 'User', ['title' => 'PHD']);
+        $this->personProvider->setCurrentPersonIdentifier(self::TEST_USER_IDENTIFIER);
         $person = $this->personDataProviderTester->getItem(self::TEST_USER_IDENTIFIER, ['includeLocal' => 'title']);
         $this->assertSame(self::TEST_USER_IDENTIFIER, $person->getIdentifier());
         $this->assertSame('Test', $person->getGivenName());

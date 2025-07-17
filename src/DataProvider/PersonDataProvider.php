@@ -45,12 +45,12 @@ class PersonDataProvider extends AbstractDataProvider
 
     protected function isGrantedReadAccessToLocalDataAttribute(string $localDataAttributeName): bool
     {
-        // override default local data attribute read access policy for the GET person ITEM operation:
+        // override the default local data attribute read access policy for the GET person ITEM operation:
         // current users are always granted read access to their own local data attributes
         // (even if their read access policy evaluates to false)
         if (false === $this->isCurrentOperationACollectionOperation()
-            && ($personIdentifier = $this->getCurrentUriVariables()[static::$identifierName] ?? null) !== null
-            && $personIdentifier === $this->getUserIdentifier()) {
+            && null !== ($personIdentifier = $this->getCurrentUriVariables()[static::$identifierName] ?? null)
+            && $personIdentifier === $this->personProvider->getCurrentPersonIdentifier()) {
             return true;
         }
 

@@ -62,6 +62,11 @@ class DummyPersonProvider implements PersonProviderInterface
         return $person;
     }
 
+    public function getCurrentPersonIdentifier(): ?string
+    {
+        return $this->currentPersonIdentifier;
+    }
+
     public function getCurrentPerson(array $options = []): ?Person
     {
         return $this->currentPersonIdentifier !== null ?

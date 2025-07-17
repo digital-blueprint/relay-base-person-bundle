@@ -10,10 +10,15 @@ use Dbp\Relay\CoreBundle\Exception\ApiError;
 interface PersonProviderInterface
 {
     /**
-     * Throws an HTTP_NOT_FOUND exception if no person with the given ID can be found.
+     * Returns the person with the given identifier or
+     * throws an HTTP_NOT_FOUND exception if no person with the given ID can be found.
+     * NOTE: Implementors must consider the FILTER option, even for the item operation,
+     * since the current user might not have read access to the requested person.
      *
-     * @param array $options Available options:
-     *                       * LocalData::INCLUDE_PARAMETER_NAME
+     * @param array $options Available options are:
+     *
+     * @see Dbp\Relay\CoreBundle\Rest\Options::LOCAL_DATA_ATTRIBUTES
+     * @see Dbp\Relay\CoreBundle\Rest\Options::FILTER
      *
      * @throws ApiError
      */
@@ -21,9 +26,11 @@ interface PersonProviderInterface
 
     /**
      * @param array $options Available options:
-     *                       * Person::SEARCH_PARAMETER_NAME (whitespace separated list of search terms to perform a partial case-insensitive text search on person's full name)
-     *                       * LocalData::INCLUDE_PARAMETER_NAME
-     *                       * LocalData::QUERY_PARAMETER_NAME
+     *
+     * @see Person::SEARCH_PARAMETER_NAME (whitespace separated list of search terms to perform a partial case-insensitive text search on person's full name)
+     * @see Dbp\Relay\CoreBundle\Rest\Options::LOCAL_DATA_ATTRIBUTES
+     * @see Dbp\Relay\CoreBundle\Rest\Options::FILTER
+     * @see Dbp\Relay\CoreBundle\Rest\Options::SORT
      *
      * @return Person[]
      *
@@ -32,11 +39,20 @@ interface PersonProviderInterface
     public function getPersons(int $currentPageNumber, int $maxNumItemsPerPage, array $options = []): array;
 
     /**
-     * Returns the Person matching the current user. Or null if there is no associated person
-     * like when the client is another server. Throws an HTTP_NOT_FOUND exception if no person is found for the current user.
+     * Returns the identifier of the person representing the current user, or null if there is none,
+     * e.g., when in a client credentials flow, i.e., the authorized party does not represent a person.
+     *
+     * @throws ApiError
+     */
+    public function getCurrentPersonIdentifier(): ?string;
+
+    /**
+     * Returns the person representing the current user, or null if there is none,
+     * e.g., when in a client credentials flow, i.e., the authorized party does not represent a person.
      *
      * @param array $options Available options:
-     *                       * LocalData::INCLUDE_PARAMETER_NAME
+     *
+     * @see Dbp\Relay\CoreBundle\Rest\Options::LOCAL_DATA_ATTRIBUTES
      *
      * @throws ApiError
      */

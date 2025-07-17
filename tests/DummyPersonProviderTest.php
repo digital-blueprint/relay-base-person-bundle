@@ -21,6 +21,11 @@ class DummyPersonProviderTest extends TestCase
         $this->personProvider->setCurrentPersonIdentifier('jd');
     }
 
+    public function testGetCurrentPersonIdentifier(): void
+    {
+        $this->assertSame('jd', $this->personProvider->getCurrentPersonIdentifier());
+    }
+
     public function testGetCurrentPerson(): void
     {
         $currentPerson = $this->personProvider->getCurrentPerson();
