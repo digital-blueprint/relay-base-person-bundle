@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.2.41
+
 - Add the new method PersonProviderInterface::getCurrentPersonIdentifier() that should return
 the identifier of the person that represents the currently logged-in user, or null of there is
 no such person (e.g., for service clients)
