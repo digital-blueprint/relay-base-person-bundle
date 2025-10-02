@@ -24,7 +24,7 @@ class Configuration implements ConfigurationInterface
         $rootNode->append(LocalData::getConfigNodeDefinition());
         $rootNode->append(Rest::getConfigNodeDefinition());
         $rootNode->append(AuthorizationConfigDefinition::create()
-            ->addRole(self::ROLE_READER, 'true',
+            ->addRole(self::ROLE_READER, 'false',
                 'Determines whether the current user has read access to the API')
             ->getNodeDefinition());
 

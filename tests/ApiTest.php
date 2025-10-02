@@ -6,7 +6,6 @@ namespace Dbp\Relay\BasePersonBundle\Tests;
 
 use Dbp\Relay\BasePersonBundle\TestUtils\TestPersonTrait;
 use Dbp\Relay\CoreBundle\TestUtils\AbstractApiTest;
-use Dbp\Relay\CoreBundle\TestUtils\UserAuthTrait;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -15,27 +14,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class ApiTest extends AbstractApiTest
 {
-    use UserAuthTrait;
     use TestPersonTrait;
-
-    public function testGetPersonNoAuth()
-    {
-        $client = $this->withUser('foobar', ['foo']);
-        $response = $client->request('GET', '/base/people/foobar');
-        $this->assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
-    }
-
-    /**
-     * @throws TransportExceptionInterface
-     */
-    public function testGetPersonWrongAuth()
-    {
-        $client = $this->withUser('foobar', [], '42');
-        $response = $client->request('GET', '/base/people/foobar', ['headers' => [
-            'Authorization' => 'Bearer NOT42',
-        ]]);
-        $this->assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
-    }
 
     /**
      * @throws RedirectionExceptionInterface
@@ -46,18 +25,19 @@ class ApiTest extends AbstractApiTest
      */
     public function testGetPerson()
     {
-        $client = $this->withUser('foobar', [], '42');
-        $user = $this->getUser($client);
-        $this->withCurrentPerson($client->getContainer(), $user->getUserIdentifier());
-        $response = $client->request('GET', '/base/people/foobar', ['headers' => [
-            'Authorization' => 'Bearer 42',
-        ]]);
-        $this->assertJson($response->getContent(false));
-        $data = json_decode($response->getContent(false), true, 512, JSON_THROW_ON_ERROR);
-        $this->assertEquals('/base/people/foobar', $data['@id']);
-        $this->assertEquals('foobar', $data['identifier']);
-        $this->assertEquals('Jane', $data['givenName']);
-        $this->assertEquals('Doe', $data['familyName']);
+        $personId = 'janed';
+        $givenName = 'Jane';
+        $familyName = 'Doe';
+        $this->withCurrentPerson($this->testClient->getContainer(), $personId, $givenName, $familyName);
+        $this->testClient->setUpUser(userAttributes: ['MAY_READ' => true]);
+        $response = $this->testClient->get('/base/people/'.$personId);
+        $content = $response->getContent(false);
+        $this->assertJson($content);
+        $data = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+        $this->assertEquals('/base/people/'.$personId, $data['@id']);
+        $this->assertEquals($personId, $data['identifier']);
+        $this->assertEquals($givenName, $data['givenName']);
+        $this->assertEquals($familyName, $data['familyName']);
     }
 
     /**
@@ -69,18 +49,19 @@ class ApiTest extends AbstractApiTest
      */
     public function testGetPersons()
     {
-        $client = $this->withUser('foobar', [], '42');
-        $user = $this->getUser($client);
-        $this->withCurrentPerson($client->getContainer(), $user->getUserIdentifier());
-        $response = $client->request('GET', '/base/people', ['headers' => [
-            'Authorization' => 'Bearer 42',
-        ]]);
-        $this->assertJson($response->getContent(false));
-        $personData = json_decode($response->getContent(false), true, 512, JSON_THROW_ON_ERROR)['hydra:member'][0];
-        $this->assertEquals('/base/people/foobar', $personData['@id']);
-        $this->assertEquals('foobar', $personData['identifier']);
-        $this->assertEquals('Jane', $personData['givenName']);
-        $this->assertEquals('Doe', $personData['familyName']);
+        $personId = 'janed';
+        $givenName = 'Jane';
+        $familyName = 'Doe';
+        $this->withCurrentPerson($this->testClient->getContainer(), $personId, $givenName, $familyName);
+        $this->testClient->setUpUser(userAttributes: ['MAY_READ' => true]);
+        $response = $this->testClient->get('/base/people');
+        $content = $response->getContent(false);
+        $this->assertJson($content);
+        $personData = json_decode($content, true, 512, JSON_THROW_ON_ERROR)['hydra:member'][0];
+        $this->assertEquals('/base/people/'.$personId, $personData['@id']);
+        $this->assertEquals($personId, $personData['identifier']);
+        $this->assertEquals($givenName, $personData['givenName']);
+        $this->assertEquals($familyName, $personData['familyName']);
     }
 
     /**
@@ -91,12 +72,9 @@ class ApiTest extends AbstractApiTest
      */
     public function testResponseHeaders()
     {
-        $client = $this->withUser('foobar', [], '42');
-        $user = $this->getUser($client);
-        $this->withCurrentPerson($client->getContainer(), $user->getUserIdentifier());
-        $response = $client->request('GET', '/base/people/foobar', ['headers' => [
-            'Authorization' => 'Bearer 42',
-        ]]);
+        $this->withCurrentPerson($this->testClient->getContainer(), 'foobar');
+        $this->testClient->setUpUser(userAttributes: ['MAY_READ' => true]);
+        $response = $this->testClient->get('/base/people/foobar');
         $header = $response->getHeaders();
 
         // We extend the defaults with CORS related headers
@@ -110,17 +88,20 @@ class ApiTest extends AbstractApiTest
         $this->assertArrayHasKey('etag', $header);
     }
 
-    public function testAuthChecks()
+    public function testUnauthorizedRequests()
     {
-        $client = self::createClient();
-
-        $endpoints = [
-            '/base/people',
-            '/base/people/foo',
-        ];
-        foreach ($endpoints as $path) {
-            $response = $client->request('GET', $path);
+        foreach (['/base/people', '/base/people/foo'] as $path) {
+            $response = $this->testClient->get($path, token: null);
             $this->assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
+        }
+    }
+
+    public function testForbiddenRequests()
+    {
+        foreach (['/base/people', '/base/people/foo'] as $path) {
+            $this->testClient->setUpUser(userAttributes: ['MAY_READ' => false]);
+            $response = $this->testClient->get($path);
+            $this->assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
         }
     }
 }
