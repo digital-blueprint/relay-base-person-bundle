@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v0.2.43
+
+- Dependency cleanups
+
 ## v0.2.42
 
 - Add ROLE_READER, which is required for read operations
