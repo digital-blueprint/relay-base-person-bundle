@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v0.2.44
+
+- Add support for Symfony 7.4
+
 ## v0.2.43
 
 - Dependency cleanups
