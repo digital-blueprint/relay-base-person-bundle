@@ -44,7 +44,7 @@ class Kernel extends BaseKernel
         $container->import('@DbpRelayBasePersonBundle/Resources/config/services_test.yaml');
         $container->extension('framework', [
             'test' => true,
-            'secret' => '',
+            'secret' => 'somethingsecret',
             'annotations' => false,
         ]);
 
