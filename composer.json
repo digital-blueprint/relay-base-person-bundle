@@ -7,7 +7,7 @@
         "ext-json": "*",
         "api-platform/metadata": "^4.1",
         "api-platform/openapi": "^4.1",
-        "dbp/relay-core-bundle": "^0.1.220",
+        "dbp/relay-core-bundle": "^0.1.231",
         "symfony/config": "^6.4 || ^7.4",
         "symfony/dependency-injection": "^6.4 || ^7.4",
         "symfony/framework-bundle": "^6.4 || ^7.4",

@@ -12,6 +12,7 @@ use Dbp\Relay\CoreBundle\TestUtils\DataProviderTester;
 use Dbp\Relay\CoreBundle\TestUtils\TestAuthorizationService;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class PersonDataProviderTest extends TestCase
 {
@@ -75,12 +76,10 @@ class PersonDataProviderTest extends TestCase
             'MAY_READ' => true,
             'MAY_READ_TITLE' => false,
         ]);
+
         $this->personProvider->addPerson('foo', 'Foo', 'Bar', ['title' => 'Queen']);
-        $person = $this->personDataProviderTester->getItem('foo', ['includeLocal' => 'title']);
-        $this->assertSame('foo', $person->getIdentifier());
-        $this->assertSame('Foo', $person->getGivenName());
-        $this->assertSame('Bar', $person->getFamilyName());
-        $this->assertSame(null, $person->getLocalDataValue('title'));
+        $this->expectException(AccessDeniedHttpException::class);
+        $this->personDataProviderTester->getItem('foo', ['includeLocal' => 'title']);
     }
 
     public function testGetSelfLocalDataAttributeForbidden(): void
@@ -159,13 +158,8 @@ class PersonDataProviderTest extends TestCase
             'MAY_READ_TITLE' => false,
         ]);
         $this->personProvider->addPerson('foo', 'Bar', 'Baz', ['title' => 'Queen']);
+        $this->expectException(AccessDeniedHttpException::class);
         $persons = $this->personDataProviderTester->getCollection(['includeLocal' => 'title']);
-        $this->assertCount(1, $persons);
-        $person = $persons[0];
-        $this->assertSame('foo', $person->getIdentifier());
-        $this->assertSame('Bar', $person->getGivenName());
-        $this->assertSame('Baz', $person->getFamilyName());
-        $this->assertSame(null, $person->getLocalDataValue('title'));
     }
 
     protected function getDefaultUserAttributes(): array
