@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v0.2.45
+
+- Bump minimum core bundle version and adjust for core API changes re local data
+
 ## v0.2.44
 
 - Add support for Symfony 7.4
