@@ -70,6 +70,18 @@ use Symfony\Component\Serializer\Annotation\Groups;
                         style: 'form',
                         explode: true
                     ),
+                    new Parameter(
+                        name: 'sort',
+                        in: 'query',
+                        schema: [
+                            'type' => 'object',
+                            'additionalProperties' => [
+                                'type' => 'string',
+                            ],
+                        ],
+                        style: 'form',
+                        explode: true
+                    ),
                 ]
             ),
             provider: PersonDataProvider::class
