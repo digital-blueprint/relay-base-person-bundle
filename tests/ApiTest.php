@@ -5,16 +5,21 @@ declare(strict_types=1);
 namespace Dbp\Relay\BasePersonBundle\Tests;
 
 use Dbp\Relay\BasePersonBundle\TestUtils\TestPersonTrait;
-use Dbp\Relay\CoreBundle\TestUtils\AbstractApiTest;
+use Dbp\Relay\CoreBundle\TestUtils\ApiTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
-class ApiTest extends AbstractApiTest
+class ApiTest extends ApiTestCase
 {
     use TestPersonTrait;
+
+    public function setUp(): void
+    {
+        $this->createTestClient();
+    }
 
     /**
      * @throws RedirectionExceptionInterface
@@ -28,7 +33,7 @@ class ApiTest extends AbstractApiTest
         $personId = 'janed';
         $givenName = 'Jane';
         $familyName = 'Doe';
-        $this->withCurrentPerson($this->testClient->getContainer(), $personId, $givenName, $familyName);
+        $this->withCurrentPerson($this->getContainer(), $personId, $givenName, $familyName);
         $this->testClient->setUpUser(userAttributes: ['MAY_READ' => true]);
         $response = $this->testClient->get('/base/people/'.$personId);
         $content = $response->getContent(false);
@@ -52,7 +57,7 @@ class ApiTest extends AbstractApiTest
         $personId = 'janed';
         $givenName = 'Jane';
         $familyName = 'Doe';
-        $this->withCurrentPerson($this->testClient->getContainer(), $personId, $givenName, $familyName);
+        $this->withCurrentPerson($this->getContainer(), $personId, $givenName, $familyName);
         $this->testClient->setUpUser(userAttributes: ['MAY_READ' => true]);
         $response = $this->testClient->get('/base/people');
         $content = $response->getContent(false);
@@ -72,7 +77,7 @@ class ApiTest extends AbstractApiTest
      */
     public function testResponseHeaders()
     {
-        $this->withCurrentPerson($this->testClient->getContainer(), 'foobar');
+        $this->withCurrentPerson($this->getContainer(), 'foobar');
         $this->testClient->setUpUser(userAttributes: ['MAY_READ' => true]);
         $response = $this->testClient->get('/base/people/foobar');
         $header = $response->getHeaders();
