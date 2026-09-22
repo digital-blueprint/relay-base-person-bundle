@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## v0.2.46
+
+- Dependency updates
+
 ## v0.2.45
 
 - Bump minimum core bundle version and adjust for core API changes re local data
