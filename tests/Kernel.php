@@ -4,50 +4,23 @@ declare(strict_types=1);
 
 namespace Dbp\Relay\BasePersonBundle\Tests;
 
-use ApiPlatform\Symfony\Bundle\ApiPlatformBundle;
 use Dbp\Relay\BasePersonBundle\DbpRelayBasePersonBundle;
-use Dbp\Relay\CoreBundle\DbpRelayCoreBundle;
-use Nelmio\CorsBundle\NelmioCorsBundle;
-use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
-use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
-use Symfony\Bundle\MonologBundle\MonologBundle;
-use Symfony\Bundle\SecurityBundle\SecurityBundle;
-use Symfony\Bundle\TwigBundle\TwigBundle;
+use Dbp\Relay\CoreBundle\TestUtils\CoreTestKernelTrait;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
-use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 class Kernel extends BaseKernel
 {
-    use MicroKernelTrait;
+    use CoreTestKernelTrait;
 
-    public function registerBundles(): iterable
+    protected function registerAdditionalBundles(): iterable
     {
-        yield new FrameworkBundle();
-        yield new SecurityBundle();
-        yield new TwigBundle();
-        yield new NelmioCorsBundle();
-        yield new MonologBundle();
-        yield new ApiPlatformBundle();
         yield new DbpRelayBasePersonBundle();
-        yield new DbpRelayCoreBundle();
     }
 
-    protected function configureRoutes(RoutingConfigurator $routes)
+    protected function configureAdditionalContainer(ContainerConfigurator $container): void
     {
-        $routes->import('@DbpRelayCoreBundle/Resources/config/routing.yaml');
-    }
-
-    protected function configureContainer(ContainerConfigurator $container)
-    {
-        $container->import('@DbpRelayCoreBundle/Resources/config/services_test.yaml');
         $container->import('@DbpRelayBasePersonBundle/Resources/config/services_test.yaml');
-        $container->extension('framework', [
-            'test' => true,
-            'secret' => 'somethingsecret',
-            'annotations' => false,
-        ]);
-
         $container->extension('dbp_relay_base_person', [
             'authorization' => [
                 'roles' => [
