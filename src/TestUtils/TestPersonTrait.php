@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Dbp\Relay\BasePersonBundle\TestUtils;
 
 use Dbp\Relay\BasePersonBundle\Service\DummyPersonProvider;
-use Dbp\Relay\CoreBundle\TestUtils\TestClient;
+use Dbp\Relay\CoreBundle\TestUtils\ApiTestClient;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 trait TestPersonTrait
 {
     public function withCurrentPerson(ContainerInterface $container,
-        string $userIdentifier = TestClient::TEST_USER_IDENTIFIER,
+        string $userIdentifier = ApiTestClient::TEST_USER_IDENTIFIER,
         string $givenName = 'Jane',
         string $familyName = 'Doe',
         array $localDataAttributes = []): void
@@ -22,7 +22,7 @@ trait TestPersonTrait
     }
 
     public function withPerson(ContainerInterface $container,
-        string $userIdentifier = TestClient::TEST_USER_IDENTIFIER,
+        string $userIdentifier = ApiTestClient::TEST_USER_IDENTIFIER,
         string $givenName = 'John',
         string $familyName = 'Doe',
         array $localDataAttributes = []): void
